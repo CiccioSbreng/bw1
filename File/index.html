@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Benchmark</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <!-- div per contenere tutto il contenuto con id "container" -->
+    <div id="container">
+
+        <!-- div per contenere il logo con id "topLogo" -->
+        <div id="topLogo">
+
+            <!-- immagine con classe "logo" -->
+            <img class="logo" src="/assets/epicode_logo.png" alt="Logo Epicode" />
+        </div>
+
+        <!-- div per contenere il titolo, introduzione e lista con id "intro" -->
+        <header id="intro">
+            <h1>Welcome to your exam</h1>
+
+            <!-- div per contenere le istruzioni con classe "instr" -->
+            <h3 class="instr">Instructions</h3>
+
+            <p>We don't expect most engineers to know the answers to all of these
+                questions, so don't worry if you're unsure of a few of them</p>
+
+            <!-- div per contenere la lista con id "list" -->
+            <div id="list">
+                <ul>
+                    <!-- elenco dei criteri del test -->
+                    <li>Each question is <span>timed</span> and can only be <span>answered once.</span></li>
+                    <li>Changing browser tab or opening other windows will <span>invalidate the question.</span></li>
+                    <li>This exam will take approx.<span>0-5 minutes.</span></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- sezione contenente checkbox e pulsante di conferma con id "confirmationLabel" -->
+        <label id="confirmationLabel" for="box">
+            <!-- checkbox con id "box" -->
+            <input type="checkbox" id="box" name="myCheckbox" value="MyCheckboxValue">
+            I promise to answer myself without help from anyone
+            <!-- pulsante per procedere con classe "proceedBtn" -->
+            <button class="proceedBtn">Proceed</button>
+        </label>
+
+    </div>
+
 </body>
+
 </html>
