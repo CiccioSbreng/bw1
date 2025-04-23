@@ -4,29 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esame</title>
+    <title>Esame1</title>
 </head>
-<!-- div per contenere tutto il contenuto con id "container" -->
-<div id="container">
-    <!-- div per contenere il logo con class "logo" -->
-    <div class="logo">
-        <img src="/assets/epicode_logo.png" alt="logo">
-    </div>
-
-    <div id="domande">
-        <p id="domanda"></p>
-    </div>
-
-   
-
-    </div>
-
-
-
-
-</div>
 
 <body>
+    <!-- div per contenere tutto il contenuto con id "container" -->
+    <div id="container">
+        <!-- div per contenere il logo con class "logo" -->
+        <div class="logo">
+            <img src="/assets/epicode_logo.png" alt="logo">
+        </div>
+        <!--creato div per contenere le domande con class ""domanda  -->
+        <div id="domande">
+            <p class="domanda"></p>
+        </div>
+        <!---  creato div per contenere i radio button inseriti in dei label con class "btn" e con class "risp" le risposte da insiere tramite js  -->
+        <div id="btnrad">
+            <label class="btn"><input type="radio" class="risp1" name="options"> </label>
+            <label class="btn"><input type="radio" class="risp2" name="options"> </label>
+            <label class="btn"><input type="radio" class="risp3" name="options"> </label>
+            <label class="btn"><input type="radio" class="risp4" name="options"> </label>
+
+        </div>
+        <!--creato div per contenere il timer (se vi è più comodo potete spostarlo nel div del logo)  -->
+        <div id="cont-timer">
+            <span class="timer">SECONDS</span>
+            <span class="tempo"></span>
+            <span class="restante">REMAINING</span>
+        </div>
+
+        <div class="question-number"> QUESTIONS </div>
+
+    </div>
+
+
 
 </body>
 
