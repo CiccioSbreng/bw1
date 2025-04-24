@@ -77,12 +77,26 @@ h1 span {
     display: flex;
     justify-content: right;
     margin-right: 180px;
-   
 }
 
 .checkbox {
     display: flex;
     justify-content: left;
     margin-top: 20px;
+}
+
+
+/* ho aggiuto queste due pseudoclassi per gestire il bottone proceed
+ */
+#proceed:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    color: grey;
+}
+
+#proceed:enabled {
+    background-color: #00BFFF;
+    color: black;
+    cursor: pointer;
 }
 
