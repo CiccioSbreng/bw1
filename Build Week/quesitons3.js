@@ -105,8 +105,13 @@ const MAX_QUESTIONS = questions.length; //numero totale di domande
 const MIN_VAL = 1; // rimane sempre costante
 var MAX_VAL = 4; //boolean -> 2, multiple -> 4
 var SELECTED_ANSWER = ""; //stringa di appoggio per memo la risposta data
-
+//Mod Federica
+var timerInterval;
+var questionTime = 30; //id del timer
+var timer = questionTime; //tempo rimanente
+//Fine Mod Fede
 window.addEventListener("load", fillPage);
+
 
 
 //funzione per popolare la pagina
@@ -120,6 +125,9 @@ function fillPage() {
   //assegno la funzione per il click dei bottoni
   setNextButtonAttribute();
   //aggiorno il risultato
+  //Mod Fede
+  startTimer(); //parto il timer
+  //Fine Mod Fede
 }
 
 
@@ -248,6 +256,20 @@ function setNextButtonAttribute() {
   console.log("°[setNextButtonAttribute]: nextBtn " + document.getElementById("nextBtn").getAttribute("onclick"));
 }
 
+//Mod Fede
+// ------------------------- timer -------------------  
+//funzione per il timer
+function startTimer() {
+  timerId = setInterval(() => {
+    timer--;
+    document.getElementById("timer").innerText = timer;
+    if (timer <= 0) {
+      clearInterval(timerId);
+      showFinalPage();
+    }
+  }, 1000);   
+}   ;
+//Fine Mod Fede
 // ------------------------- pagina finale -------------------
 function showFinalPage() {
   console.log("*************** FINAL PAGE *****************");
