@@ -39,6 +39,18 @@
             <button onclick="location.href='Pagina-esame.html'" id="proceed"><b>PROCEED</b></button>
         </div>
     </div>
+    <!---Mod Federica-->
+    <div id="quiz" style="display: none;">  <!--Inizia il quiz-->
+        <p>Time remaining: <span id="timer">15s</span></p> <!--Timer-->
+        <h2 id="questionText">Question will appear here...</h2> <!--Domanda-->
+        <div id="answers"></div>  <!--Risposte-->
+        <button id="nextBtn" style="display: none;">Next</button> <!--Pulsante per domanda succ-->
+    </div>
+
+    <div id="result" style="display: none;"> <!--Risultato finale-->
+        <h2>Quiz Completed!</h2>  
+        <p id="scoreText">You scored 0 out of X points!</p> <!--Punteggio finale-->
+        <button id="restartBtn">Restart</button>  <!--Pulsante per riavviare il quiz-->
 </body>
 
 </html>
