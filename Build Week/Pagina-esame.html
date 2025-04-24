@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esame Benchmark</title>
-    
+    <link rel="stylesheet" href="paginaEsame.css">
 </head>
 
 <body>
@@ -16,11 +16,11 @@
            <img src="/assets/epicode_logo.png" alt="logo">
         </div>
         <!--creato div per contenere il timer id "contTimer" (se vi è più comodo potete spostarlo nel div del logo)  -->
-        <div id="contTimer">
+        <!-- <div id="contTimer">                 commentato timer
             <span class="timer">SECONDS</span>
             <span class="tempo"></span>
             <span class="restante">REMAINING</span>
-        </div>
+        </div>    -->
     </header>
     <!-- fine mod Viola-->
 
@@ -35,22 +35,22 @@
         
         <div id="lbl">
             <!-- mod Viola: ho messo la label per gli input, così ovunque clicchi viene selezionato; ho chiuso il tutto in un button per questioni visive, la logica funziona con radio button -->
-            <button onclick="showNextBtn()">
+            <button onclick="showNextBtn()" class="btnQuestions">
                 <input type="radio" id="risp1" name="options" style="appearance: none;"> 
                 <label for="risp1" id="answer1" class="btn" > </label>
             </button>
             
-            <button onclick="showNextBtn()">
+            <button onclick="showNextBtn()" class="btnQuestions">
                 <input type="radio" id="risp2" name="options" style="appearance: none;">
                 <label for="risp2" id="answer2" class="btn" > </label>
             </button>
 
-            <button onclick="showNextBtn()">
+            <button onclick="showNextBtn()" class="btnQuestions">
                 <input type="radio" id="risp3" name="options" style="appearance: none;">
                 <label for="risp3" id="answer3" class="btn" ></label>
             </button> 
 
-            <button onclick="showNextBtn()">
+            <button onclick="showNextBtn()" class="btnQuestions">
                 <input type="radio" id="risp4" name="options" style="appearance: none;"> 
                 <label for="risp4" id="answer4" class="btn"></label> </label> 
             </button>

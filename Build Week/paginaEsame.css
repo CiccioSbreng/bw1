@@ -1,0 +1,48 @@
+body {
+    
+    width: 100%;
+    height: 100%;
+    background-image: url(/assets/bg.jpg);
+    background-size: cover;
+    color: white;
+    font-family: "Inter", sans-serif;
+    margin-left: 20px;
+}
+
+.logo{
+    margin-top: 40px;
+}
+
+.logo img {
+    width:200px;
+
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#domande {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    font-size: 50px;
+    margin-bottom: 40px;
+}
+
+#lbl {
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.btnQuestions {
+    width: 350px;
+    height: 70px;
+    border-radius: 30px;
+    background-color: transparent;
+    color: white;
+    border: solid white 3px;
+}
