@@ -1,5 +1,4 @@
 let proceedBtn = document.getElementById("proceed");
-window.onload
 document.getElementById("proceed").setAttribute("disabled", "true");
 
 let controlCheckBox = document.getElementById("toCheck");
