@@ -19,5 +19,5 @@ function enableProceedButton() {
 proceedBtn.addEventListener("click", showNextPage); 
 
 function showNextPage() {
-    window.location.href = "questions2.html";
+    window.location.href = "Pagina-esame.html";
 }
