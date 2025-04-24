@@ -86,3 +86,28 @@ h1 span {
     margin-top: 20px;
 }
 
+/* Mod Viola */
+#proceed:disabled {
+    background-color: #d3d3d3;
+    opacity: 0.5; 
+    color: gray;
+    cursor: not-allowed;
+}
+
+#proceed:hover:enabled {
+    background-color: #00bfff;
+    color: black;
+    cursor: pointer;
+}
+
+input[name="options"] {
+    appearance: none;
+}
+
+#nextBtn {
+    display: none;
+}
+
+#finalPage {
+    display: none;
+}
