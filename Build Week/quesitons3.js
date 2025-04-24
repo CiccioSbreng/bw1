@@ -16,7 +16,7 @@ const questions = [
     type: "multiple",
     difficulty: "easy",
     question:
-      "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn&#039;t get modified?",
+      "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: "Final",
     incorrect_answers: ["Static", "Private", "Public"],
   },
@@ -245,14 +245,19 @@ function setNextButtonAttribute() {
   else { //sono all'ultima domanda
     document.getElementById("nextBtn").setAttribute("onclick", showFinalPage());
   }
-  console.log("°[setNextButtonAttribute]: nextBtn " + document.getElementById("nextBtn").getAttribute("onclick"));
+  // console.log("°[setNextButtonAttribute]: nextBtn " + document.getElementById("nextBtn").getAttribute("onclick"));
 }
 
 // ------------------------- pagina finale -------------------
 function showFinalPage() {
   console.log("*************** FINAL PAGE *****************");
   document.getElementById("container").style.display = "none"; //nascondo il div principale
-  document.getElementById("contTimer").style.display = "none"; //nascondo il div del timer
+  
+  
+  ////////////////////////////// da abilitare timer ////////////////
+  //document.getElementById("contTimer").style.display = "none"; //nascondo il div del timer
+
+
   //popolo il div con il risultato
   document.getElementById("finalPage").style.display = "block"; //mostro il div finale
   document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;
