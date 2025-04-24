@@ -9,12 +9,18 @@ body {
     margin-left: 20px;
 }
 
+ 
+
+
 .logo{
+    display: flex;
+    justify-content: left;
     margin-top: 40px;
 }
 
 .logo img {
     width:200px;
+    
 
 }
 
@@ -29,13 +35,16 @@ body {
     display: flex;
     width: 50%;
     justify-content: center;
-    font-size: 50px;
+    font-size: 40px;
     margin-bottom: 40px;
 }
 
 #lbl {
     display: flex;
+    flex-wrap: wrap;
+    width: 50%;
     margin-bottom: 50px;
+    justify-content: space-around;
 }
 
 .btnQuestions {
@@ -45,4 +54,15 @@ body {
     background-color: transparent;
     color: white;
     border: solid white 3px;
+    margin-bottom: 40px;
+    font-size: 20px;
+}
+
+.totalQuestion {
+    color: #d20094;
+}
+
+.contDomande {
+    font-size: 30px;
+
 }
