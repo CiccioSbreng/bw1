@@ -252,6 +252,7 @@ const questions = [
   function showFinalPage() {
     console.log("*************** FINAL PAGE *****************");
     document.getElementById("container").style.display = "none"; //nascondo il div principale
+    document.getElementById("contTimer").style.display = "none"; //nascondo il div del timer
     //popolo il div con il risultato
     document.getElementById("finalPage").style.display = "block"; //mostro il div finale
     document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;
