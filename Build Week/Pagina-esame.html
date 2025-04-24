@@ -4,30 +4,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esame</title>
+    <title>Esame1</title>
+    <link rel="stylesheet" href="falsostyle.css">
 </head>
-<!-- div per contenere tutto il contenuto con id "container" -->
-<div id="container">
-    <!-- div per contenere il logo con class "logo" -->
-    <div class="logo">
-        <img src="/assets/epicode_logo.png" alt="logo">
-    </div>
-
-    <div id="domande">
-        <p id="domanda"></p>
-    </div>
-
-   
-
-    </div>
-
-
-
-
-</div>
 
 <body>
+    
+    <!-- div per contenere tutto il contenuto con id "container" -->
+    <div id="container">
 
+        <header>
+            <!-- div per contenere il logo con class "logo" -->
+            <div class="logo">
+               <!-- <img src="/assets/epicode_logo.png" alt="logo"> -->
+            </div>
+            <!--creato div per contenere il timer id "contTimer" (se vi è più comodo potete spostarlo nel div del logo)  -->
+            <div id="contTimer">
+                <span class="timer">SECONDS</span>
+                <span class="tempo"></span>
+                <span class="restante">REMAINING</span>
+            </div>
+        </header>
+
+        <!--creato div per contenere le domande con class ""domanda  -->
+        <div id="domande">
+            <h1 id="questionText">question here</h1>
+        </div>
+
+        <!---  creato div con id "lbl" per contenere i radio button inseriti in dei label con class "btn" e con class "risp" le risposte da insiere tramite js  -->
+        <div id="lbl">
+            
+            <button onclick="showNextBtn()">
+                <input type="radio" id="risp1" name="options" style="appearance: none;" > 
+                <label for="risp1" id="answer1" class="btn" style="border: 1px solid black;"> </label>
+            </button>
+            
+            <button onclick="showNextBtn()">
+                <input type="radio" id="risp2" name="options" style="appearance: none;">
+                <label for="risp2" id="answer2" class="btn" style="border: 1px solid black;"> </label>
+            </button>
+
+            <button onclick="showNextBtn()">
+                <input type="radio" id="risp3" name="options" style="appearance: none;">
+                <label for="risp3" id="answer3" class="btn" style="border: 
+                1px solid black;"></label>
+            </button> 
+
+            <button onclick="showNextBtn()">
+                <input type="radio" id="risp4" name="options" style="appearance: none;"> 
+                <label for="risp4" id="answer4" class="btn" style="border: 1px solid black;"></label> </label> 
+            </button>
+
+        </div>
+
+        
+        <!-- creato div per contenere il contatore delle domande con class "contDomande"-->
+        <div class="contDomande"> 
+            Question <span id="questionNumber">x</span><span class="totalQuesitons">/10</span> 
+        
+        </div>
+
+        <button id="nextBtn" onclick="checkAnswer()" style="display: none;">Next Question</button>
+
+    </div>
+    <!---------------------------FINAL PAGE --------------------------->
+    <div id="finalPage" style="display: none;">
+        <h2>
+            Your score is&nbsp;
+            <span id="scoreValue">x</span>&nbsp;correct answer<span id="plural"></span> out of 10!
+        </h2>
+    </div>
+    <script src="questions.js"></script>
 </body>
 
 </html>
