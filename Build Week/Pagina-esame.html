@@ -24,9 +24,8 @@
 <body>
     <!-- div per contenere tutto il contenuto con id "container" -->
     <div id="container">
-        <!-- mod viola: header spostato in alto e accorpato logo e timer-->
+       
 
-        <!-- fine mod Viola-->
         <!--creato div per contenere le domande con class ""domanda  -->
         <div id="domande">
             <h1 id="questionText">question here</h1>
@@ -35,28 +34,29 @@
         <!---  creato div con id "lbl" per contenere i radio button inseriti in dei label con class "btn" e con class "risp" le risposte da insiere tramite js  -->
 
         <div id="lbl">
-            <!-- mod Viola: ho messo la label per gli input, così ovunque clicchi viene selezionato; ho chiuso il tutto in un button per questioni visive, la logica funziona con radio button -->
+            <!-- mod Viola: cambiato button con div, ho aggiunto tre righe a .btnQuestions per centrare il testo; ho aggiunto la funzione per colorare la risposta-->
             
-                <button onclick="showNextBtn()" class="btnQuestions">
+            
+                <div onclick="showNextBtn()" class="btnQuestions">
                     <input type="radio" id="risp1" name="options" style="appearance: none;">
                     <label for="risp1" id="answer1" class="btn"> </label>
-                </button>
+                </div>
 
-                <button onclick="showNextBtn()" class="btnQuestions">
+                <div onclick="showNextBtn()" class="btnQuestions">
                     <input type="radio" id="risp2" name="options" style="appearance: none;">
-                    <label for="risp2" id="answer2" class="btn"> </label>
-                </button> 
+                    <label for="risp2" id="answer2" class="btn" > </label>
+                </div> 
             
             
-                <button onclick="showNextBtn()" class="btnQuestions">
+                <div onclick="showNextBtn()" class="btnQuestions">
                     <input type="radio" id="risp3" name="options" style="appearance: none;">
                     <label for="risp3" id="answer3" class="btn"></label>
-                </button>
+                </div>
 
-                <button onclick="showNextBtn()" class="btnQuestions">
+                <div onclick="showNextBtn()" class="btnQuestions">
                     <input type="radio" id="risp4" name="options" style="appearance: none;">
                     <label for="risp4" id="answer4" class="btn"></label> </label>
-                </button>
+                </div>
             
             <!-- fine mod Viola -->
         </div>
@@ -69,19 +69,24 @@
         </div>
 
 
-        <button id="nextBtn" onclick="checkAnswer()">Next Question</button>
-    </div>
+        <button id="nextBtn" onclick="checkAnswer()" style="display: none;">Next Question</button>
+
+
+        <!--Mod Fede-->
+        <div id="contTimer"> 
+            <p>Time remaining: <span id="timer"></span> seconds</p>
+        </div>
+
+        <div id="timerBar">
+            <div id="progressBar"></div>
+        </div>                  
 
         
-
-
-
-
-
-
+    <!--Fine Mod Fede-->
+        
     </div>
     <!---------------------------FINAL PAGE----------------------------->
-    <div id="finalPage">
+    <div id="finalPage" style="display:none;">
         <h2>
             Your score is&nbsp;
             <span id="scoreValue">x</span>&nbsp;correct answer<span id="plural"></span> out of 10!

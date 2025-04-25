@@ -56,6 +56,11 @@ body {
     border: solid white 3px;
     margin-bottom: 40px;
     font-size: 20px;
+    /* mod viola perché sono diventati div messo i div */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* fine mod viola */
 }
 
 .totalQuestion {
