@@ -211,8 +211,6 @@ function hideBtn() {
 }
 
 
-
-
 function showNextBtn() {
   document.getElementById("nextBtn").style.display = "block";
 }
@@ -260,7 +258,8 @@ function setNextButtonAttribute() {
 // ------------------------- timer -------------------  
 //funzione per il timer
 function startTimer() {
-  timerId = setInterval(() => {
+  
+ const timerId = setInterval(() => {
     timer--;
     document.getElementById("timer").innerText = timer;
     if (timer <= 0) {

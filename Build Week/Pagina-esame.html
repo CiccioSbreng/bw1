@@ -1,15 +1,13 @@
-aaaa
-
 <!DOCTYPE html>
 <html lang="en">
-gggg
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esame Benchmark</title>
     <link rel="stylesheet" href="paginaEsame.css">
 </head>
-
+<body>
 <header>
     <!-- div per contenere il logo con class "logo" -->
     <div class="logo">
@@ -23,7 +21,7 @@ gggg
     </div>    -->
 </header>
 
-<body>
+
     <!-- div per contenere tutto il contenuto con id "container" -->
     <div id="container">
         <!-- mod viola: header spostato in alto e accorpato logo e timer-->
@@ -77,7 +75,7 @@ gggg
         
         <button id="nextBtn" onclick="checkAnswer()">Next Question</button>
         <div id="contTimer">
-            <p>Time remaining: <span id="timer">30</span> seconds</p>
+            <p>Time remaining: <span id="timer"></span> seconds</p>
           </div>
 
         <div id="timerBar">
@@ -90,7 +88,7 @@ gggg
         <div id="finalPage" style="display:none;">
             <h2>
                 Your score is&nbsp;
-                <span id="scoreValue">x</span>&nbsp;correct answer<span id="plural"></span> out of 10!
+                <span id="scoreValue">x</span> correct answer <span id="plural"></span> out of 10!
             </h2>
         </div>
         
