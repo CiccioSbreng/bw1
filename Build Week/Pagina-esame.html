@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esame Benchmark</title>
     <link rel="stylesheet" href="paginaEsame.css">
 </head>
-
+<body>
 <header>
     <!-- div per contenere il logo con class "logo" -->
     <div class="logo">
@@ -20,7 +21,7 @@
     </div>    -->
 </header>
 
-<body>
+
     <!-- div per contenere tutto il contenuto con id "container" -->
     <div id="container">
        
@@ -87,32 +88,29 @@
 
 
         <!--Mod Fede-->
-        <div id="contTimer"> 
-            <p>Time remaining: <span id="timer"></span> seconds</p>
-        </div>
+        
+        <button id="nextBtn" onclick="checkAnswer()">Next Question</button>
+        <div id="contTimer">
+            <p>Time remaining: <span id="timer">30</span> seconds</p>
+          </div>
 
         <div id="timerBar">
             <div id="progressBar"></div>
         </div>                  
 
         
-    <!--Fine Mod Fede-->
+<!--Fine Mod Fede-->
+        <!---------------------------FINAL PAGE----------------------------->
+        <div id="finalPage" style="display:none;">
+            <h2>
+                Your score is&nbsp;
+                <span id="scoreValue">x</span>&nbsp;correct answer<span id="plural"></span> out of 10!
+            </h2>
+        </div>
         
+        <script src="quesitons3.js"></script>
+
     </div>
-    <!---------------------------FINAL PAGE----------------------------->
-    <div id="finalPage" style="display:none;">
-        <p id="emoji"></p>
-        <h2>
-            Il tuo punteggio è di 
-            <span id="scoreValue">x</span> 
-            rispost<span class="plural">a</span> 
-            corrett<span class="plural">a</span> 
-            su 10!
-        </h2>
-        <p id="outcome"></p>
-    </div>
-    
-    <script src="quesitons3.js"></script>
 </body>
 
 </html>
