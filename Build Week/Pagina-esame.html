@@ -34,9 +34,24 @@
 
         <div id="lbl">
             <!-- mod Viola: cambiato button con div, ho aggiunto tre righe a .btnQuestions per centrare il testo-->
-            
-            
-                <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+
+                <label for="risp1" onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+                    <input type="radio" id="risp1" name="options" >
+                    <span id="answer1" class="btn"> </span>
+                </label>
+                <label for="risp2" onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+                    <input type="radio" id="risp2" name="options" >
+                    <span id="answer2" class="btn"> </span>
+                </label>
+                <label for="risp3" onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+                    <input type="radio" id="risp3" name="options" >
+                    <span id="answer3" class="btn"></span>
+                </label>
+                <label for="risp4" onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+                    <input type="radio" id="risp4" name="options" >
+                    <span id="answer4" class="btn"></span>
+                </label>
+                <!-- <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
                     <input type="radio" id="risp1" name="options" >
                     <label for="risp1" id="answer1" class="btn"> </label>
                 </div>
@@ -55,7 +70,7 @@
                 <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
                     <input type="radio" id="risp4" name="options" >
                     <label for="risp4" id="answer4" class="btn"></label> </label>
-                </div>
+                </div> -->
             
             <!-- fine mod Viola -->
         </div>

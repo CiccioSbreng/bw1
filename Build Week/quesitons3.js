@@ -99,12 +99,12 @@ const questions = [
 ];
 
 
-var QUESTION_COUNTER = 0;
-var CORRECT_ANSWERS = 0;
+let QUESTION_COUNTER = 0;
+let CORRECT_ANSWERS = 0;
 const MAX_QUESTIONS = questions.length; //numero totale di domande 
 const MIN_VAL = 1; // rimane sempre costante
-var MAX_VAL = 4; //boolean -> 2, multiple -> 4
-var SELECTED_ANSWER = ""; //stringa di appoggio per memo la risposta data
+let MAX_VAL = 4; //boolean -> 2, multiple -> 4
+let SELECTED_ANSWER = ""; //stringa di appoggio per memo la risposta data
 //Mod Federica
 var timerInterval;
 var questionTime = 30; //id del timer
@@ -117,11 +117,10 @@ window.addEventListener("load", fillPage);
 //funzione per popolare la pagina
 function fillPage() {
   console.log("*************** FILL PAGE *****************");
-  //////////////////////////////////
+  
   resetRadio(); //resetto i bottoni radio
-  resetColor(); //resetto il colore dei bottoni
-  ////////////////////////////////
 
+  resetColor(); //resetto il colore dei bottoni
 
   hideNextBtn(); //nascondo il bottone next
   
@@ -130,9 +129,9 @@ function fillPage() {
   randomAnswersPos(); //popolo i bottoni con le risposte
   
   setNextButtonAttribute(); //assegno la funzione per il click dei bottoni
-  //aggiorno il risultato
+  
   //Mod Fede
-  //startTimer(); //parto il timer
+  startTimer(); //parto il timer
   //Fine Mod Fede
 }
 
@@ -148,42 +147,44 @@ function showQuestion() {
   document.getElementById("questionNumber").innerText = QUESTION_COUNTER + 1;
 }
 
-
 // funzione per posizionare le risposte in modo casuale
+
 function randomAnswersPos() {
   //controllo che ci siano ancora domande
   if (QUESTION_COUNTER > MAX_QUESTIONS - 1)
     return;
+
   //controllo se il tipo della domanda è boolean e assegno MAX_VAL di conseguenza
   console.log(">[randomAnswersPos]: question number: " + QUESTION_COUNTER);
   questions[QUESTION_COUNTER].type == "boolean" ? MAX_VAL = 2 : MAX_VAL = 4;
-  //se MAX_VAL == 2, rimuovo bottoni
-  MAX_VAL == 2 ? hideBtn() : showBtn();
+  
+  MAX_VAL == 2 ? hideBtn() : showBtn(); //se MAX_VAL == 2, rimuovo bottoni
 
   console.log(">[randomAnswersPos]: MAX_VAL: " + MAX_VAL);
+
   //genero l'indice per la risposta giusta, che è l'unica che assegno direttamente
   let rightAnswer = myRandom();
+
   console.log(">[randomAnswersPos]: rightAnswer index: " + rightAnswer);
   console.log(">[randomAnswersPos]: toPlace: " + questions[QUESTION_COUNTER].correct_answer);
 
   //assegno la risposta giusta al button di indice rightAnswer
   document.getElementById("answer" + rightAnswer).innerText = questions[QUESTION_COUNTER].correct_answer;
   document.getElementById("risp" + rightAnswer).setAttribute("value", questions[QUESTION_COUNTER].correct_answer);
-  let wrongAnswerIdx = 0; //wrongAnswerIdx -> questions[QUESTION_COUNTER].inCORRECT_ANSWERs[wrongAnswerIdx]
-
-  //per le risposte sbagliate, uso un ciclo for
+  
+  let wrongAnswerIdx = 0; //appoggio per le risposte sbagliate
   for (let i = MIN_VAL; i < MAX_VAL + 1; i++) {
     console.log(">[randomAnswersPos]: i: " + i);
     console.log(">[randomAnswersPos]: wrongAnswerIdx: " + wrongAnswerIdx);
     //se i == rightAnswer, non faccio nulla
     if (i == rightAnswer)
       continue;
-    //posiziono le risposte sbagliate, non serve randomizzarle
-    //label innertext
-    document.getElementById("answer" + i).innerText = questions[QUESTION_COUNTER].incorrect_answers[wrongAnswerIdx];
-    //input value
-    document.getElementById("risp" + i).setAttribute("value", questions[QUESTION_COUNTER].incorrect_answers[wrongAnswerIdx]);
-    wrongAnswerIdx++;
+    //altrimenti assegno la risposta sbagliata
+    document.getElementById("answer" + i).innerText = questions[QUESTION_COUNTER].incorrect_answers[wrongAnswerIdx]; //span  
+    
+    document.getElementById("risp" + i).setAttribute("value", questions[QUESTION_COUNTER].incorrect_answers[wrongAnswerIdx]); //radiobtn
+   
+    wrongAnswerIdx++; //incremento l'indice per le risposte sbagliate
   }
 }
 
@@ -194,8 +195,6 @@ function myRandom() {
   console.log(">>[myRandom]: " + toRet);
   return toRet;
 }
-
-
 //funzione per creare i due bottoni extra nel caso di type == multiple
 function showBtn() {
   console.log("§[showBtn]: ...");
@@ -206,7 +205,6 @@ function showBtn() {
   console.log("§[showBtn]: DONE");
 }
 
-
 function hideBtn() {
   console.log("+[hideBtn]: ...");
   let container = document.getElementById("lbl");
@@ -216,9 +214,6 @@ function hideBtn() {
   console.log("+[hideBtn]: DONE");
 }
 
-
-
-
 function showNextBtn() {
   document.getElementById("nextBtn").style.display = "block";
 }
@@ -227,16 +222,21 @@ function hideNextBtn() {
   document.getElementById("nextBtn").style.display = "none";
 }
 
-//   // --------------------------- per getstire le risposte -------
+
+//-------------------------- per getstire le risposte -------
 function checkAnswer() {
   console.log("@@@@@@@@@@ BUTTON CLICKED");
   console.log("![checkAnswer]: current question: " + QUESTION_COUNTER);
-  let rightAnswer = questions[QUESTION_COUNTER].correct_answer;
+ 
+  const rightAnswer = questions[QUESTION_COUNTER].correct_answer;
   console.log("![checkAnswer]: right answer: " + rightAnswer);
 
   //recupero la risposta selezionata
   SELECTED_ANSWER = document.querySelector('input[name="options"]:checked').value;
+
   console.log("![checkAnswer]: selected answer: " + SELECTED_ANSWER);
+
+
   if (rightAnswer == SELECTED_ANSWER) {
     console.log("![checkAnswer]: right answer");
     CORRECT_ANSWERS++;
@@ -259,7 +259,6 @@ function setNextButtonAttribute() {
   else { //sono all'ultima domanda
     document.getElementById("nextBtn").setAttribute("onclick", showFinalPage());
   }
-  // console.log("°[setNextButtonAttribute]: nextBtn " + document.getElementById("nextBtn").getAttribute("onclick"));
 }
 
 //Mod Fede
@@ -276,6 +275,36 @@ function startTimer() {
   }, 1000);   
 }   ;
 //Fine Mod Fede
+
+//funzione per resettare il check dei radio button al ricaricamento della pagina
+function resetRadio() {
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(radio => {
+      radio.checked = false;
+  });
+}
+
+//funzione per colorare la risposta selezinata
+function highlightSelected() {
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(radio => {
+      if (radio.checked) {
+          radio.parentElement.classList.add('btnSelected');
+      } else {
+          radio.parentElement.classList.remove('btnSelected');
+      }
+      });
+}
+
+//funzione che ripristina il colore di sfondo dei bottoni
+function resetColor() {
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(radio => {
+      radio.parentElement.classList.remove('btnSelected');
+  });
+}
+
+
 // ------------------------- pagina finale -------------------
 function showFinalPage() {
   console.log("*************** FINAL PAGE *****************");
@@ -308,40 +337,3 @@ function showFinalPage() {
   }
 
 }
-
-
-////// mod viola per colorare la risposta selezionata
-
-//funzione per resettare il check dei radio button
-function resetRadio() {
-  const radios = document.querySelectorAll('input[type="radio"]');
-  radios.forEach(radio => {
-      radio.checked = false;
-  });
-}
-
-//funzione per colorare la risposta selezinata
-function highlightSelected() {
-  
-  const radios = document.querySelectorAll('input[type="radio"]');
-  
-  radios.forEach(radio => {
-      if (radio.checked) {
-          radio.parentElement.classList.add('btnSelected');
-      } else {
-          radio.parentElement.classList.remove('btnSelected');
-      }
-      });
-}
-
-//funzione che ripristina il colore di sfondo dei bottoni
-function resetColor() {
-  const radios = document.querySelectorAll('input[type="radio"]');
-  
-  radios.forEach(radio => {
-      radio.parentElement.classList.remove('btnSelected');
-  });
-}
-
-////// fine mod per risposta colorata
-

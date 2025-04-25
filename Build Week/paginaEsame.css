@@ -56,7 +56,8 @@ body {
     border: solid white 3px;
     margin-bottom: 40px;
     font-size: 20px;
-    /* mod viola perché sono diventati div messo i div */
+
+    /* mod viola perché sono diventati label -> testo centrato */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,10 +79,10 @@ input[type="radio"] {
     appearance: none;
 }
 
-
+    /* per fare colorata la risp selezionata */
 .btnSelected, .btnQuestions:hover {
     background-color: #d20094;
     color: white;
     border: solid #d20094 3px;
 }
-
+/* fine mod */
