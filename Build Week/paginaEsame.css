@@ -73,4 +73,15 @@ body {
 }
 
 
+/* mod viola tmp */
+input[type="radio"] {
+    appearance: none;
+}
+
+
+.btnSelected, .btnQuestions:hover {
+    background-color: #d20094;
+    color: white;
+    border: solid #d20094 3px;
+}
 

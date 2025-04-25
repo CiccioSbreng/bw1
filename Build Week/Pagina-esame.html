@@ -36,24 +36,24 @@
             <!-- mod Viola: cambiato button con div, ho aggiunto tre righe a .btnQuestions per centrare il testo-->
             
             
-                <div onclick="showNextBtn()" class="btnQuestions">
-                    <input type="radio" id="risp1" name="options" style="appearance: none;">
+                <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+                    <input type="radio" id="risp1" name="options" >
                     <label for="risp1" id="answer1" class="btn"> </label>
                 </div>
 
-                <div onclick="showNextBtn()" class="btnQuestions">
-                    <input type="radio" id="risp2" name="options" style="appearance: none;">
+                <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+                    <input type="radio" id="risp2" name="options" >
                     <label for="risp2" id="answer2" class="btn" > </label>
                 </div> 
             
             
-                <div onclick="showNextBtn()" class="btnQuestions">
-                    <input type="radio" id="risp3" name="options" style="appearance: none;">
+                <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+                    <input type="radio" id="risp3" name="options" >
                     <label for="risp3" id="answer3" class="btn"></label>
                 </div>
 
-                <div onclick="showNextBtn()" class="btnQuestions">
-                    <input type="radio" id="risp4" name="options" style="appearance: none;">
+                <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
+                    <input type="radio" id="risp4" name="options" >
                     <label for="risp4" id="answer4" class="btn"></label> </label>
                 </div>
             
@@ -89,7 +89,10 @@
         <p id="emoji"></p>
         <h2>
             Il tuo punteggio è di 
-            <span id="scoreValue">x</span> risposte corrette su <span id="plural"></span> 10!
+            <span id="scoreValue">x</span> 
+            rispost<span class="plural">a</span> 
+            corrett<span class="plural">a</span> 
+            su 10!
         </h2>
         <p id="outcome"></p>
     </div>

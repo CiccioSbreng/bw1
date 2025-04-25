@@ -117,16 +117,22 @@ window.addEventListener("load", fillPage);
 //funzione per popolare la pagina
 function fillPage() {
   console.log("*************** FILL PAGE *****************");
-  hideNextBtn();
-  //popolo il div con la domanda
-  showQuestion();
-  //popolo i bottoni con le risposte
-  randomAnswersPos();
-  //assegno la funzione per il click dei bottoni
-  setNextButtonAttribute();
+  //////////////////////////////////
+  resetRadio(); //resetto i bottoni radio
+  resetColor(); //resetto il colore dei bottoni
+  ////////////////////////////////
+
+
+  hideNextBtn(); //nascondo il bottone next
+  
+  showQuestion(); //popolo il div con la domanda
+  
+  randomAnswersPos(); //popolo i bottoni con le risposte
+  
+  setNextButtonAttribute(); //assegno la funzione per il click dei bottoni
   //aggiorno il risultato
   //Mod Fede
-  startTimer(); //parto il timer
+  //startTimer(); //parto il timer
   //Fine Mod Fede
 }
 
@@ -295,12 +301,47 @@ function showFinalPage() {
   document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;
   console.log("^[showResult]: scoreValue: " + document.getElementById("scoreValue").innerText);
   if (CORRECT_ANSWERS > 1) {
-    document.getElementById("plural").innerText = "s";
+    let toPlural = document.getElementsByClassName("plural");
+    for (let i = 0; i < toPlural.length; i++) {
+      toPlural[i].innerText = "e";
+    }
   }
 
 }
 
 
+////// mod viola per colorare la risposta selezionata
 
+//funzione per resettare il check dei radio button
+function resetRadio() {
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(radio => {
+      radio.checked = false;
+  });
+}
 
+//funzione per colorare la risposta selezinata
+function highlightSelected() {
+  
+  const radios = document.querySelectorAll('input[type="radio"]');
+  
+  radios.forEach(radio => {
+      if (radio.checked) {
+          radio.parentElement.classList.add('btnSelected');
+      } else {
+          radio.parentElement.classList.remove('btnSelected');
+      }
+      });
+}
+
+//funzione che ripristina il colore di sfondo dei bottoni
+function resetColor() {
+  const radios = document.querySelectorAll('input[type="radio"]');
+  
+  radios.forEach(radio => {
+      radio.parentElement.classList.remove('btnSelected');
+  });
+}
+
+////// fine mod per risposta colorata
 
