@@ -282,11 +282,22 @@ function showFinalPage() {
 
   //popolo il div con il risultato
   document.getElementById("finalPage").style.display = "block"; //mostro il div finale
+  let passed = (CORRECT_ANSWERS > 5); 
+  let emoji = document.getElementById("emoji");
+  if (passed) {
+    document.getElementById("emoji").innerText = "😎";
+    document.getElementById("outcome").innerHTML="Complimenti! Test superato!";
+  } else {
+    document.getElementById("emoji").innerText = "😢";
+    document.getElementById("outcome").innerHTML="Pecato! Test non superato!";
+  }
+
   document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;
   console.log("^[showResult]: scoreValue: " + document.getElementById("scoreValue").innerText);
   if (CORRECT_ANSWERS > 1) {
     document.getElementById("plural").innerText = "s";
   }
+
 }
 
 
