@@ -98,3 +98,32 @@ h1 span {
     margin-top: 20px;
 }
 
+
+/* mod viola per popup e procedi disabilitato */
+
+/* calsse per button proceed */
+.disabled { 
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.buttonProceed #popupText {
+    opacity: 0; /* nascondi il testo */
+}
+.buttonProceed:hover #popupText {
+    opacity: 0.8; /* mostra il testo */
+}
+/* popup che è in realà uno span */
+#popupText {
+    padding:0.5em 1.3em;
+    font-size: 1em;
+    font-style: italic;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* trasition che lavora al cambio della proprietà opacity */
+    transition: opacity 1s ease-in-out 0.5s;
+}
+/* fine popup */

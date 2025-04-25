@@ -84,5 +84,6 @@ input[type="radio"] {
     background-color: #d20094;
     color: white;
     border: solid #d20094 3px;
+    cursor: pointer;
 }
 /* fine mod */
