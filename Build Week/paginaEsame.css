@@ -157,13 +157,12 @@ html {
     background-color: white;
     width: 0px;
     position: fixed;
-    top: -300px;
-    right: 120px;
-}
+    top: -558px;
+    right: 210px;}
 
 .circle-container {
-    width: 150px;
-    height: 150px;
+    width: 435px;
+    height: 435px;
     background-color: white;
     background-color: #ddd;
     border-radius: 50%;
