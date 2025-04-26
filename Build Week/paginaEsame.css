@@ -97,6 +97,7 @@ input[type="radio"] {
     font-size: 1.1em;
     font-family: "Inter", sans-serif;
     border-radius: 30px;
+    display: none;
 }
 #nextBtn:hover, #restartBtn:hover {
     cursor: pointer;
@@ -121,7 +122,5 @@ input[type="radio"] {
     margin-bottom: 20px;
 }
 
-#restartBtn {
-    display: none;
-}
+
 /* fine mod */

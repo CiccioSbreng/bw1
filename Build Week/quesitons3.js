@@ -173,7 +173,7 @@ function randomAnswersPos() {
   document.getElementById("risp" + rightAnswer).setAttribute("value", questions[QUESTION_COUNTER].correct_answer);
   
   let wrongAnswerIdx = 0; //appoggio per le risposte sbagliate
-  for (let i = MIN_VAL; i < MAX_VAL + 1; i++) {
+  for (let i = MIN_VAL; i <= MAX_VAL ; i++) {
     console.log(">[randomAnswersPos]: i: " + i);
     console.log(">[randomAnswersPos]: wrongAnswerIdx: " + wrongAnswerIdx);
     //se i == rightAnswer, non faccio nulla
@@ -188,13 +188,13 @@ function randomAnswersPos() {
   }
 }
 
-
 //funzoine di appoggio per generare numeri casuali tra min e max
 function myRandom() {
   let toRet = Math.floor(Math.random() * (MAX_VAL - MIN_VAL + 1) + MIN_VAL);
   console.log(">>[myRandom]: " + toRet);
   return toRet;
 }
+
 //funzione per creare i due bottoni extra nel caso di type == multiple
 function showBtn() {
   console.log("§[showBtn]: ...");
