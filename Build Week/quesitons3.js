@@ -106,11 +106,103 @@ const MIN_VAL = 1; // rimane sempre costante
 let MAX_VAL = 4; //boolean -> 2, multiple -> 4
 let SELECTED_ANSWER = ""; //stringa di appoggio per memo la risposta data
 //Mod Federica
-var timerInterval;
+/*var timerInterval;
 var questionTime = 30; //id del timer
 var timer = questionTime; //tempo rimanente
 //Fine Mod Fede
-window.addEventListener("load", fillPage);
+window.addEventListener("load", fillPage);*/
+
+
+
+const semicircles = document.querySelectorAll('.semicircle');
+const timer = document.querySelector('.timer');
+
+
+
+
+const hr = 0; // Set the number of hours
+const min = 0; // Set the number of minutes         
+const sec = 15; // Set the number of seconds
+
+
+const hours = hr * 3600000; // Convert hours to milliseconds
+const minutes = min * 60000; // Convert minutes to milliseconds 
+const seconds = sec * 1000; // Convert seconds to milliseconds   
+const setTime = hours + minutes + seconds; // Total time in milliseconds     
+const starTime = Date.now(); // Get the current time in milliseconds
+const futureTime = starTime + setTime; // Calculate the future time in milliseconds
+
+const timerLoop = setInterval(countDownTimer);
+countDownTimer();
+
+function countDownTimer() {
+    const currentTime = Date.now(); // Ottieni il tempo corrente in millisecondi
+    let remainingTime = futureTime - currentTime; // Calcola il tempo rimanente in millisecondi
+    const safeTime = Math.max(0, remainingTime); // Assicurati che il tempo rimanente non sia mai negativo
+    const angle = (safeTime / setTime) * 360; // Calcola l'angolo per il semicerchio
+
+    // 1. Prima aggiorniamo il grafico
+    if (angle > 180) {
+        semicircles[2].style.display = 'none';
+        semicircles[0].style.transform = `rotate(180deg)`;
+        semicircles[1].style.transform = `rotate(${angle}deg)`;
+    } else {
+        semicircles[2].style.display = 'block';
+        semicircles[0].style.transform = `rotate(${angle}deg)`;
+        semicircles[1].style.transform = `rotate(${angle}deg)`;
+    }
+
+    // 2. Poi calcoliamo il timer
+    let hrs = Math.floor(safeTime / (1000 * 60 * 60)) % 24;
+    let mins = Math.floor((safeTime / (1000 * 60)) % 60);
+    let secs = Math.floor((safeTime / 1000) % 60);
+
+    // 3. Formattiamo il tempo a due cifre
+    hrs = hrs.toLocaleString('it-IT', { minimumIntegerDigits: 2, useGrouping: false });
+    mins = mins.toLocaleString('it-IT', { minimumIntegerDigits: 2, useGrouping: false });
+    secs = secs.toLocaleString('it-IT', { minimumIntegerDigits: 2, useGrouping: false });
+    
+    // 4. Visualizziamo il timer nel DOM
+    timer.innerHTML = `
+    <div> ${hrs} </div>
+    <div class="colon">:</div>
+    <div> ${mins} </div>
+    <div class="colon">:</div>
+    <div> ${secs} </div>
+    `;
+
+    // 5. Cambiamo il colore quando il timer è vicino a zero
+    if (safeTime <= 10000) {
+        semicircles[0].style.backgroundColor = "orange";
+        semicircles[1].style.backgroundColor = "orange";
+        timer.style.color = "orange";
+    }
+
+    if (safeTime <= 6000) {
+        semicircles[0].style.backgroundColor = "red";
+        semicircles[1].style.backgroundColor = "red";
+        timer.style.color = "red";
+    }
+
+    // 6. Quando il timer arriva a zero, nascondiamo il grafico e fermiamo il timer
+    if (safeTime <= 0) {
+        clearInterval(timerLoop); // Ferma il timer quando il countdown arriva a zero
+        semicircles.forEach(s => s.style.display = 'none'); // Nascondiamo tutti i semicircoli
+        
+        timer.innerHTML = `
+        <div> 00 </div>
+        <div class="colon">:</div>
+        <div> 00 </div>
+        <div class="colon">:</div>
+        <div> 00 </div>`;
+        timer.style.color = "lightgray"; // Cambiamo il colore del timer a grigio
+
+    }
+}
+
+
+
+
 
 
 
