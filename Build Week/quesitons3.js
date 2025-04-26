@@ -109,7 +109,7 @@ let SELECTED_ANSWER = ""; //stringa di appoggio per memo la risposta data
 /*var timerInterval;
 var questionTime = 30; //id del timer
 var timer = questionTime; //tempo rimanente
-//Fine Mod Fede
+//Fine Mod Fede*/
 window.addEventListener("load", fillPage);
 
 
