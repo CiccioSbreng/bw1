@@ -318,24 +318,33 @@ function showFinalPage() {
 
 
   //popolo il div con il risultato
-  document.getElementById("finalPage").style.display = "block"; //mostro il div finale
+  document.getElementById("finalPage").style.display = "flex"; //mostro il div finale
   let passed = (CORRECT_ANSWERS > 5); 
   let emoji = document.getElementById("emoji");
   if (passed) {
     document.getElementById("emoji").innerText = "😎";
-    document.getElementById("outcome").innerHTML="Complimenti! Test superato!";
+    document.getElementById("outcome").innerHTML="You did it! Good job!";
   } else {
     document.getElementById("emoji").innerText = "😢";
-    document.getElementById("outcome").innerHTML="Pecato! Test non superato!";
+    document.getElementById("outcome").innerHTML="Sorry, you didn't pass the test.";
+    document.getElementById("restartBtn").style.display = "block"; //mostro il bottone restart in caso di fallimento del test
   }
 
   document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;
   console.log("^[showResult]: scoreValue: " + document.getElementById("scoreValue").innerText);
-  if (CORRECT_ANSWERS > 1) {
-    let toPlural = document.getElementsByClassName("plural");
-    for (let i = 0; i < toPlural.length; i++) {
-      toPlural[i].innerText = "e";
-    }
-  }
-
+  if (CORRECT_ANSWERS > 1) 
+    document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;
 }
+
+//funzione per resettare il punteggio e il contatore delle domande e ripartire
+function restart() {
+  QUESTION_COUNTER = 0;
+  CORRECT_ANSWERS = 0;
+  timer = questionTime;
+  document.getElementById("contTimer").style.display = "block"; //mostro il div del timer
+  document.getElementById("finalPage").style.display = "none"; //nascondo il div finale
+  document.getElementById("container").style.display = "flex"; //mostro il div principale
+  fillPage(); //ripopolamento della pagina
+}
+
+

@@ -74,16 +74,54 @@ body {
 }
 
 
-/* mod viola tmp */
+
 input[type="radio"] {
     appearance: none;
 }
 
-    /* per fare colorata la risp selezionata */
+/* per fare colorata la risp selezionata */
 .btnSelected, .btnQuestions:hover {
     background-color: #d20094;
     color: white;
     border: solid #d20094 3px;
     cursor: pointer;
+}
+
+/* mod viola per bottoni e pg finale */
+#nextBtn, #restartBtn {
+    margin-top: 1em;
+    background-color: #00FFFF;
+    padding: 1em 1.3em;
+    border: none;
+    color: black;
+    font-size: 1.1em;
+    font-family: "Inter", sans-serif;
+    border-radius: 30px;
+}
+#nextBtn:hover, #restartBtn:hover {
+    cursor: pointer;
+    box-shadow:0 0 10px #00aeff;
+    font-size: 1.2em;
+}
+
+#finalPage {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    width: 60%;
+    margin: auto;
+    height: 80vh;    
+}
+
+#finalPage p {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#restartBtn {
+    display: none;
 }
 /* fine mod */
