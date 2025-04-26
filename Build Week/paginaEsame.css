@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 html {
 
     font-family: 'Heebo', sans-serif;
@@ -20,22 +21,22 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 header {
     align-self: flex-start;
     width: 100%;
-} 
-.logo{
+}
+
+.logo {
     display: flex;
     justify-content: space-between;
     padding: 3em 2em;
-
-    border: 2px solid white;
 }
+
 .logo img {
-    width:200px;
+    width: 200px;
 }
 
 #container {
@@ -46,8 +47,6 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-   
-    border: 2px solid pink;
 }
 
 
@@ -57,8 +56,8 @@ header {
     font-size: 1.5em;
     padding: 1em;
     width: 60%;
-    border: 2px solid black;
 }
+
 #questionText {
     text-align: center;
 }
@@ -69,8 +68,6 @@ header {
     width: 60%;
     padding: 2em 0;
     justify-content: space-around;
-
-    border: 2px solid greenyellow;
 }
 
 .btnQuestions {
@@ -80,7 +77,7 @@ header {
     background-color: transparent;
     color: white;
     border: solid white 3px;
-   
+
     font-size: 20px;
 
     /* mod viola perché sono diventati label -> testo centrato */
@@ -107,7 +104,8 @@ input[type="radio"] {
 }
 
 /* per fare colorata la risp selezionata */
-.btnSelected, .btnQuestions:hover {
+.btnSelected,
+.btnQuestions:hover {
     background-color: #d20094;
     color: white;
     border: solid #d20094 3px;
@@ -115,8 +113,9 @@ input[type="radio"] {
 }
 
 /* mod viola per bottoni e pg finale */
-#nextBtn, #restartBtn {
-   
+#nextBtn,
+#restartBtn {
+
     background-color: #00FFFF;
     padding: 1em 1.3em;
     border: none;
@@ -127,9 +126,10 @@ input[type="radio"] {
     display: none;
 }
 
-#nextBtn:hover, #restartBtn:hover {
+#nextBtn:hover,
+#restartBtn:hover {
     cursor: pointer;
-    box-shadow:0 0 10px #00aeff;
+    box-shadow: 0 0 10px #00aeff;
     font-size: 1.2em;
 }
 
@@ -138,10 +138,10 @@ input[type="radio"] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   
+
     width: 60%;
     margin: auto;
-    height: 80vh;    
+    height: 80vh;
 }
 
 #finalPage p {
@@ -152,15 +152,6 @@ input[type="radio"] {
 
 
 /* fine mod */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-
-
-}
-
 
 .center {
     display: flex;
@@ -170,15 +161,16 @@ input[type="radio"] {
 }
 
 .main-container {
-    
-        height: 100vh;
-        background-color: orange;
-        background-color: white;
-        width: 0px;
-        position: fixed;
-        top: -285px;
-        right: 145px;
-    }
+    height: 100vh;
+    background-color: orange;
+    background-color: white;
+    width: 0px;
+    position: fixed;
+    top: -300px;
+    right: 145px;
+}
+
+/* questo è quello rotondo che sta sotto a tutti*/
 .circle-container {
     width: 150px;
     height: 150px;
@@ -198,75 +190,55 @@ input[type="radio"] {
     top: 0;
     left: 0;
     transform-origin: right center;
-
 }
 
 .semicircle:nth-child(1) {
-    background-color: red;
+    background-color: red; 
     background-color: #088b8b;
     z-index: 2;
-    transition: transform 0.5s linear, background-color 0.5s ease;
-
-
+    transition: transform 1s linear, background-color 1s ease;
 }
 
 .semicircle:nth-child(2) {
     background-color: blue;
     background-color: #088b8b;
     z-index: 3;
-    transition: transform 0.5s linear, background-color 0.5s ease;
+    transition: transform 1s linear, background-color 1s ease;
 
 }
 
 .semicircle:nth-child(3) {
-   /* background-color: white;*/
+    background-color: white;  
     background-color: #c01010;
     z-index: 4;
-    transition: transform 0.5s linear, background-color 0.5s ease;
-
-  /*  display: none; */
+    transition: transform 1s linear, background-color 1s ease;
+    display: none; 
 }
 
 .outermost-circle {
 
-    width: 390px;
-    height: 390px;
+    width: 130px;
+    height: 130px;
     background-color: black;
-    /*background-color: white;*/
+    background-color: white;
     border-radius: 50%;
     z-index: 5;
-    /*dispaly: none;*/
-
-
+    /* display: none;  */
 }
- /* main-container:hover .semicircle:nth-child(1) {
- transform: rotate(180deg);
-    transition: 1s linear;
-}
-  main-container:hover .semicircle:nth-child(2) {
-    transform: rotate(180deg);
-       transition: 2s linear;
-   }
-   main-container:hover .semicircle:nth-child(3) {
-   opacity:0;
-   transition: opacity 0s 1s;
 
-   }*/
 .timer-container {
-width: 230px;
-height:230px;
-z-index: 6;
+    width: 230px;
+    height: 230px;
+    z-index: 6;
+}
 
-   }
-.timer{
-width: 400px;   
-height: 100px;
-z-index: 7;
+.timer {
+    width: 400px;
+    height: 100px;
+    z-index: 7;
+}
 
-
-   }
-
-   .timer div{
+.timer div {
     font-size: 30px;
     font-weight: 100;
     width: 25px;
@@ -275,12 +247,5 @@ z-index: 7;
     justify-content: center;
     align-items: center;
     margin: 0 10px 0 10px;
-   }
-   .timer .colon{
-background-color: transparent;
-width: 10px;
-margin-left: 0;
-margin-right: 0;
-padding-bottom: 15px;
+}
 
-   }
