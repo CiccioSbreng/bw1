@@ -105,12 +105,7 @@ const MAX_QUESTIONS = questions.length; //numero totale di domande
 const MIN_VAL = 1; // rimane sempre costante
 let MAX_VAL = 4; //boolean -> 2, multiple -> 4
 let SELECTED_ANSWER = ""; //stringa di appoggio per memo la risposta data
-//Mod Federica
-/*var timerInterval;
-var questionTime = 30; //id del timer
-var timer = questionTime; //tempo rimanente
-//Fine Mod Fede 
-*/
+
 const RANDOM_QUESTIONS_IDXS = myRandomArray(MAX_QUESTIONS); //array di indici random
 
 window.addEventListener("load", fillPage);
@@ -121,24 +116,17 @@ const semicircles = document.querySelectorAll('.semicircle');
 const timer = document.querySelector('.timer');
 
 
-
-
-const hr = 0; // Set the number of hours
-const min = 0; // Set the number of minutes         
+ 
 const sec = 15; // Set the number of seconds
 
-
-const hours = hr * 3600000; // Convert hours to milliseconds
-const minutes = min * 60000; // Convert minutes to milliseconds 
 const seconds = sec * 1000; // Convert seconds to milliseconds   
-const setTime = hours + minutes + seconds; // Total time in milliseconds     
+const setTime =  seconds; // Total time in milliseconds     
 const starTime = Date.now(); // Get the current time in milliseconds
 const futureTime = starTime + setTime; // Calculate the future time in milliseconds
 
-const timerLoop = setInterval(countDownTimer);
-countDownTimer();
 
-function countDownTimer() {
+
+function countDownTimer(timerLoop) {
     const currentTime = Date.now(); // Ottieni il tempo corrente in millisecondi
     let remainingTime = futureTime - currentTime; // Calcola il tempo rimanente in millisecondi
     const safeTime = Math.max(0, remainingTime); // Assicurati che il tempo rimanente non sia mai negativo
@@ -156,25 +144,28 @@ function countDownTimer() {
     }
 
     // 2. Poi calcoliamo il timer
-    let hrs = Math.floor(safeTime / (1000 * 60 * 60)) % 24;
-    let mins = Math.floor((safeTime / (1000 * 60)) % 60);
+   
     let secs = Math.floor((safeTime / 1000) % 60);
 
     // 3. Formattiamo il tempo a due cifre
-    hrs = hrs.toLocaleString('it-IT', { minimumIntegerDigits: 2, useGrouping: false });
-    mins = mins.toLocaleString('it-IT', { minimumIntegerDigits: 2, useGrouping: false });
+
     secs = secs.toLocaleString('it-IT', { minimumIntegerDigits: 2, useGrouping: false });
     
     // 4. Visualizziamo il timer nel DOM
     timer.innerHTML = `
-    <div> ${hrs} </div>
-    <div class="colon">:</div>
-    <div> ${mins} </div>
-    <div class="colon">:</div>
+
     <div> ${secs} </div>
     `;
 
     // 5. Cambiamo il colore quando il timer è vicino a zero
+
+    if (safeTime <= 15000) {
+      semicircles[0].style.backgroundColor = "blue";
+      semicircles[1].style.backgroundColor = "blue";
+      timer.style.color = "blue";
+  }
+
+
     if (safeTime <= 10000) {
         semicircles[0].style.backgroundColor = "orange";
         semicircles[1].style.backgroundColor = "orange";
@@ -189,30 +180,34 @@ function countDownTimer() {
 
     // 6. Quando il timer arriva a zero, nascondiamo il grafico e fermiamo il timer
     if (safeTime <= 0) {
-        clearInterval(timerLoop); // Ferma il timer quando il countdown arriva a zero
+        clearInterval( timerLoop ); // Ferma il timer quando il countdown arriva a zero
         semicircles.forEach(s => s.style.display = 'none'); // Nascondiamo tutti i semicircoli
         
         timer.innerHTML = `
-        <div> 00 </div>
-        <div class="colon">:</div>
-        <div> 00 </div>
-        <div class="colon">:</div>
         <div> 00 </div>`;
         timer.style.color = "lightgray"; // Cambiamo il colore del timer a grigio
 
-    }
+    }    
 }
 
 
-
-
-
-
+function resetTimer(timerLoop) {
+    console.log("*************** RESET TIMER *****************");
+    clearInterval(timerLoop); // Ferma il timer quando il countdown arriva a zero
+    semicircles.forEach(s => s.style.display = 'none'); // Nascondiamo tutti i semicircoli
+    timer.innerHTML = `
+        <div> 00 </div>`;
+    timer.style.color = "lightgray"; // Cambiamo il colore del timer a grigio
+}
 
 //funzione per popolare la pagina
 function fillPage() {
   console.log("*************** FILL PAGE *****************");
   console.log("QUESTION COUNT: " +QUESTION_COUNTER + "/" + MAX_QUESTIONS);
+
+  const timerLoop = setInterval(countDownTimer,1000 ); // Avvia il timer
+  countDownTimer(timerLoop); // Avvia il timer
+
   resetRadio(); //resetto i bottoni radio
 
   resetColor(); //resetto il colore dei bottoni
@@ -367,21 +362,6 @@ function goToFinal() {
   document.getElementById("nextBtn").setAttribute("onclick", showFinalPage());
 }
 
-//Mod Fede
-// ------------------------- timer -------------------  
-//funzione per il timer
-function startTimer() {
-
-  const timerId = setInterval(() => {
-    timer--;
-    document.getElementById("timer").innerText = timer;
-    if (timer <= 0) {
-      clearInterval(timerId);
-      showFinalPage();
-    }
-  }, 1000);
-};
-//Fine Mod Fede
 
 //funzione per resettare il check dei radio button al ricaricamento della pagina
 function resetRadio() {
