@@ -64,42 +64,20 @@
                     <input type="radio" id="risp4" name="options" >
                     <span id="answer4" class="btn"></span>
                 </label>
-                <!-- <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
-                    <input type="radio" id="risp1" name="options" >
-                    <label for="risp1" id="answer1" class="btn"> </label>
-                </div>
-
-                <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
-                    <input type="radio" id="risp2" name="options" >
-                    <label for="risp2" id="answer2" class="btn" > </label>
-                </div> 
-            
-            
-                <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
-                    <input type="radio" id="risp3" name="options" >
-                    <label for="risp3" id="answer3" class="btn"></label>
-                </div>
-
-                <div onclick="showNextBtn();highlightSelected()" class="btnQuestions">
-                    <input type="radio" id="risp4" name="options" >
-                    <label for="risp4" id="answer4" class="btn"></label> </label>
-                </div> -->
-            
-            <!-- fine mod Viola -->
         </div>
 
 
         <!-- creato div per contenere il contatore delle domande con class "contDomande"-->
         <!-- mod Viola: per questioni di accessibilità -->
-        <div class="contDomande">
-            Question <span id="questionNumber">x</span><span class="totalQuestion">/10</span>
-        </div>
-
-
-        <button id="nextBtn" onclick="checkAnswer();resetTimer()">Next Question</button>
-
+       
+            <button id="nextBtn" onclick="checkAnswer();resetTimer()">Next Question</button>
+        
 
     </div>
+    <div class="contDomande">
+        Question <span id="questionNumber">x</span><span class="totalQuestion">/10</span>
+    </div>
+   
 
 
     <!---------------------------FINAL PAGE----------------------------->
