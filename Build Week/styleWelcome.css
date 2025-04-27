@@ -59,6 +59,7 @@ main{
     justify-content: space-between;
     width: 85%;
 }
+
 .checkbox {
     display: flex;
     justify-content: left;
@@ -78,18 +79,12 @@ main{
     font-family: "Inter", sans-serif;
     box-shadow:0 0 20px 5px #00aeff;
 }
-
 .buttonProceed {
     display: flex;
     justify-content: right;
 }
 
 
-
-
-/* mod viola per popup e procedi disabilitato */
-
-/* calsse per button proceed */
 .disabled { 
     opacity: 0.5;
     cursor: not-allowed;
@@ -101,7 +96,7 @@ main{
 .buttonProceed:hover #popupText {
     opacity: 0.8; /* mostra il testo */
 }
-/* popup che è in realà uno span */
+
 #popupText {
     padding:0.5em 1.3em;
     font-size: 1em;
@@ -114,4 +109,3 @@ main{
     /* trasition che lavora al cambio della proprietà opacity */
     transition: opacity 1s ease-in-out 0.5s;
 }
-/* fine popup */

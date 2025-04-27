@@ -1,17 +1,19 @@
 let proceedBtn = document.getElementById("proceed");
 document.getElementById("proceed").setAttribute("disabled", "true");
 
+
+let controlCheckBox = document.getElementById("toCheck");
+
 //event listener per mettere di default il button disabled
 window.addEventListener("load",enableProceedButton);
 
-let controlCheckBox = document.getElementById("toCheck");
-//event listener per il checkbox, se è flaggato, button abilitato e popup non visibile
-
+//event listener per la checkbox, se è flaggato, button abilitato e popup non visibile
 controlCheckBox.addEventListener("change", alreadyFlagged);
 controlCheckBox.addEventListener("change", enableProceedButton);
-proceedBtn.addEventListener("click", showNextPage);
-//messaggio di aiuto all'utente per procedere con l'esame
-
+//event listener per collegare la pagina del test
+proceedBtn.addEventListener("click", () => {
+    window.location.href = "Pagina-esame.html";
+});
 
 
 //Abilita il button proceed solo se il checkbox è selezionato
@@ -27,6 +29,7 @@ function enableProceedButton() {
 
     }  
 }
+
 //Mostra il popup se la checkbox non è selezionata
 function alreadyFlagged() {
     if (controlCheckBox.checked) {
@@ -36,6 +39,3 @@ function alreadyFlagged() {
     }
 }
 
-function showNextPage() {
-    window.location.href = "Pagina-esame.html";
-}

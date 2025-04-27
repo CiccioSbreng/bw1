@@ -103,7 +103,6 @@ let CORRECT_ANSWERS = 0;
 const MAX_QUESTIONS = questions.length;
 let MAX_VAL = 4; // boolean -> 2, multiple -> 4
 let SELECTED_ANSWER = "";
-
 //array di con gli indici di riposte in ordine random
 const RANDOM_QUESTIONS_IDXS = myRandomArray(MAX_QUESTIONS);
 
@@ -125,11 +124,9 @@ progressCircle.style.strokeDasharray = circumference;
 progressCircle.style.strokeDashoffset = 0;
 progressCircle.style.stroke = "green";
 
-// let timeout = null; 
 
 function startTimer() {
   clearInterval(timer);  // Stoppa il timer precedente
-  // clearTimeout(timeout);
   timeLeft = totalTime;   // Reset del tempo
 
   // Resettiamo la barra del timer
@@ -162,8 +159,8 @@ function updateUI() {
   }
 }
 
+// Passiamo alla domanda successiva
 function nextQuestion() {
-  // Passiamo alla domanda successiva
   console.log("[nextQ]: changing question...")
   QUESTION_COUNTER++;
   console.log("[nextQ]: question counter: " + QUESTION_COUNTER);
@@ -178,7 +175,7 @@ function nextQuestion() {
 // Aggiungi il click su NEXT per avanzare alla domanda successiva
 document.getElementById("nextBtn").addEventListener("click", () => {
   clearInterval(timer); // Fermiamo il timer
-  QUESTION_COUNTER++;  // Passiamo alla domanda successiva (??)
+  QUESTION_COUNTER++;  // Passiamo alla domanda successiva 
 
   if (QUESTION_COUNTER >= MAX_QUESTIONS) {
     showFinalPage(); // Se le domande sono finite, mostra la pagina finale
@@ -230,7 +227,7 @@ function fillPage() {
   startTimer();  // Iniziamo il timer per la domanda corrente
 }
 
-// Funzione per popolare la pagina con la domanda random OK
+// Funzione per popolare la pagina con la domanda random 
 function setQuestionRandom() {
   if (QUESTION_COUNTER > MAX_QUESTIONS - 1)
     return;
@@ -239,7 +236,7 @@ function setQuestionRandom() {
   document.getElementById("questionNumber").innerText = QUESTION_COUNTER +1;
 }
 
-// Funzione per posizionare le risposte in modo casuale OK
+// Funzione per posizionare le risposte in modo casuale 
 function setAnswersRandom() {
   if (QUESTION_COUNTER > MAX_QUESTIONS - 1)
     return;
@@ -265,7 +262,7 @@ function setAnswersRandom() {
   }
 }
 
-//funzione per controllare le risposte OK
+//funzione per controllare le risposte 
 function checkAnswer() {
   console.log("@@@@@@@@@@ BUTTON CLICKED");
   console.log("![checkAnswer]: current question: " + QUESTION_COUNTER);
@@ -279,21 +276,19 @@ function checkAnswer() {
 
   console.log("![checkAnswer]: selected answer: " + SELECTED_ANSWER);
 
-  if (rightAnswer == SELECTED_ANSWER) {
-    console.log("![checkAnswer]: congrats!");
+  if (rightAnswer == SELECTED_ANSWER) 
     CORRECT_ANSWERS++;
-  }
+  
   console.log("![checkAnswer]: current score: " + CORRECT_ANSWERS);
 
-  //QUESTION_COUNTER++; //incremento la variabile globale (??)
   console.log("[checkAnswer]:final QUESTION_COUNTER: " + QUESTION_COUNTER);
   console.log("___________________________________________________");
   fillPage(); //ripopolo la pagina
 }
-// Funzione per generare un array di numeri casuali OK
+// Funzione per generare un array di numeri casuali 
 function myRandomArray(length) {
   let toRet = [];
-  let posLibere = new Array(length).fill(true);
+  let posLibere = new Array(length).fill(true); //array di tutte posizioni libere
 
   for (let i = 0; i < length; i++) {
     let valRandom;
@@ -303,6 +298,13 @@ function myRandomArray(length) {
     posLibere[valRandom] = false;
     toRet[i] = valRandom;
   }
+
+  let toCheck = "";
+    for (let i = 0; i < toRet.length; i++) {
+      toCheck += toRet[i] ;
+      toCheck += ", ";
+    }
+    console.log("[myRandomArray]: toRet: " + toCheck);
   return toRet;
 }
 
@@ -328,7 +330,7 @@ function hideNextBtn() {
   document.getElementById("nextBtn").style.display = "none";
 }
 
-// Funzione per resettare i radio button OK
+// Funzione per resettare i radio button 
 function resetRadio() {
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => {
@@ -336,7 +338,7 @@ function resetRadio() {
   });
 }
 
-// Funzione per ripristinare il colore di sfondo dei bottoni OK
+// Funzione per ripristinare il colore di sfondo dei bottoni 
 function resetColor() {
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => {
@@ -344,7 +346,7 @@ function resetColor() {
   });
 }
 
-//funzione per colorare la risposta selezinata OK
+//funzione per colorare la risposta selezinata 
 function highlightSelected() {
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => {
@@ -356,7 +358,7 @@ function highlightSelected() {
   });
 }
 
-//funzione per far apparire l'ultimo div e scomparire tutto il resto (tranne logo) OK
+//funzione per far apparire l'ultimo div e scomparire tutto il resto (tranne logo) 
 function showFinalPage() {
   clearInterval(timer); // Fermiamo il timer
   document.getElementById("container").style.display = "none";
@@ -370,7 +372,7 @@ function showFinalPage() {
     outcome.innerText = "Good Job!";  
   } else {
     emoji.innerText = "😓";
-    outcome.innerText = "Try again";
+    outcome.innerText = "Better luck next time";
   }
 
   document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;

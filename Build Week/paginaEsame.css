@@ -50,7 +50,6 @@ header {
     justify-content: center;
 }
 
-
 #domande {
     display: flex;
     justify-content: center;
@@ -95,10 +94,9 @@ header {
 
 .contDomande {
     font-size: 30px;
+    padding-top: 1em;
     margin-bottom: 1em;
 }
-
-
 
 input[type="radio"] {
     appearance: none;
@@ -113,8 +111,7 @@ input[type="radio"] {
     cursor: pointer;
 }
 
-/* mod viola per bottoni e pg finale */
-#nextBtn{
+#nextBtn {
 
     background-color: #00FFFF;
     padding: 1em 1.3em;
@@ -126,12 +123,11 @@ input[type="radio"] {
     display: none;
 }
 
-#nextBtn:hover{
+#nextBtn:hover {
     cursor: pointer;
     box-shadow: 0 0 10px #00aeff;
     font-size: 1.2em;
 }
-
 
 #finalPage {
     display: none;
@@ -152,8 +148,8 @@ input[type="radio"] {
     border-radius: 30px;
     background-color: #fdf1fac6;
     color: #007bff;
-    text-shadow:0 0 1px #0056b3 ;
-    box-shadow: 0 0 30px 5px rgb(0, 0, 0);
+    text-shadow: 0 0 1px #0056b3;
+    box-shadow: 0 0 30px 5px rgb(150, 150, 150);
 
 }
 
@@ -163,12 +159,7 @@ input[type="radio"] {
     padding: 1.5em 2em;
 }
 
-
-/* fine mod */
-
-
-  
-  .container {
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -177,32 +168,31 @@ input[type="radio"] {
     position: fixed;
     top: 5em;
     right: 5em;
+}
 
-  }
-  
-  .question1 {
+.question1 {
     font-size: 24px;
     text-align: center;
     font-weight: bold;
-  }
-  
-  .timer-container {
+}
+
+.timer-container {
     position: relative;
     width: 200px;
     height: 200px;
-  }
-  
-  svg {
+}
+
+svg {
     transform: rotate(-90deg);
-  }
-  
-  .circle-bg {
+}
+
+.circle-bg {
     fill: none;
     stroke: #eee;
     stroke-width: 15;
-  }
-  
-  .circle-progress {
+}
+
+.circle-progress {
     fill: none;
     stroke-width: 15;
     stroke: green;
@@ -210,32 +200,34 @@ input[type="radio"] {
     transition: stroke 0.5s, stroke-dashoffset 1s linear;
     width: 100px;
     height: 100px;
-  }
-  
-  .time-left {
+}
+
+.time-left {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 35px;
     font-weight: bold;
-  }
+}
 
-  .time-rem {
+.time-rem {
     font-size: 1em;
     position: absolute;
-    
-  }
-  
-  .txt-top {
+
+}
+
+.txt-top {
     top: 30%;
     left: 37%;
-  }
-  .txt-bottom {
+}
+
+.txt-bottom {
     top: 60%;
     left: 35%;
-  }
-  button {
+}
+
+button {
     padding: 10px 20px;
     font-size: 18px;
     background-color: #007bff;
@@ -244,11 +236,8 @@ input[type="radio"] {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
+}
 
- 
-  
+button:hover {
+    background-color: #0056b3;
+}

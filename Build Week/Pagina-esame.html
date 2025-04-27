@@ -13,9 +13,8 @@
         <!-- div per contenere il logo con class "logo" -->
         <div class="logo">
             <img src="/assets/epicode_logo.png" alt="logo">
-
         </div>
-        <!--creato div per contenere il timer id "contTimer" (se vi è più comodo potete spostarlo nel div del logo)  -->
+        <!--creato div per contenere il timer id "contTimer"-->
         <div class="container">
             <div class="timer-container">
                 <svg width="200" height="200">
@@ -34,8 +33,6 @@
     <!-- div per contenere tutto il contenuto con id "container" -->
     <div id="container">
 
-
-        <!--creato div per contenere le domande con class ""domanda  -->
         <div id="domande">
             <h1 id="questionText">question here</h1>
         </div>
@@ -43,7 +40,7 @@
         <!---  creato div con id "lbl" per contenere i radio button inseriti in dei label con class "btn" e con class "risp" le risposte da insiere tramite js  -->
 
         <div id="lbl">
-            <!-- mod Viola: cambiato button con div, ho aggiunto tre righe a .btnQuestions per centrare il testo-->
+
 
             <label for="risp1" onclick="showNextBtn();highlightSelected()" class="btnQuestions">
                 <input type="radio" id="risp1" name="options">
@@ -63,13 +60,7 @@
             </label>
         </div>
 
-
-        <!-- creato div per contenere il contatore delle domande con class "contDomande"-->
-        <!-- mod Viola: per questioni di accessibilità -->
-
         <button id="nextBtn" onclick="checkAnswer()">Next Question</button>
-
-
     </div>
     <div class="contDomande">
         Question <span id="questionNumber">x</span><span class="totalQuestion">/10</span>
