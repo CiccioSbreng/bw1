@@ -36,7 +36,8 @@ header {
 }
 
 .logo img {
-    width: 200px;
+    width: 150px;
+    height: 50px
 }
 
 #container {
@@ -153,99 +154,76 @@ input[type="radio"] {
 
 /* fine mod */
 
-.center {
+
+  
+  .container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 16px;
 
-}
-
-.main-container {
-    height: 100vh;
-    background-color: orange;
-    background-color: white;
-    width: 0px;
-    position: fixed;
-    top: -300px;
-    right: 145px;
-}
-
-/* questo è quello rotondo che sta sotto a tutti*/
-.circle-container {
-    width: 150px;
-    height: 150px;
-    background-color: white;
-    background-color: #ddd;
-    border-radius: 50%;
-    position: absolute;
-    overflow: hidden;
-    z-index: 1;
-
-}
-
-.semicircle {
-    width: 50%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform-origin: right center;
-}
-
-.semicircle:nth-child(1) {
-    background-color: red; 
-    background-color: #088b8b;
-    z-index: 2;
-    transition: transform 1s linear, background-color 1s ease;
-}
-
-.semicircle:nth-child(2) {
-    background-color: blue;
-    background-color: #088b8b;
-    z-index: 3;
-    transition: transform 1s linear, background-color 1s ease;
-
-}
-
-.semicircle:nth-child(3) {
-    background-color: white;  
-    background-color: #c01010;
-    z-index: 4;
-    transition: transform 1s linear, background-color 1s ease;
-    display: none; 
-}
-
-.outermost-circle {
-
-    width: 130px;
-    height: 130px;
-    background-color: black;
-    background-color: white;
-    border-radius: 50%;
-    z-index: 5;
-    /* display: none;  */
-}
-
-.timer-container {
-    width: 230px;
-    height: 230px;
-    z-index: 6;
-}
-
-.timer {
-    width: 400px;
+  }
+  
+  .question1 {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .timer-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+  }
+  
+  svg {
+    transform: rotate(-90deg);
+  }
+  
+  .circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 15;
+  }
+  
+  .circle-progress {
+    fill: none;
+    stroke-width: 15;
+    stroke: green;
+    stroke-linecap: round;
+    stroke-dasharray: 534; /* 2 * PI * r -> approx for r=85 */
+    stroke-dashoffset: 0;
+    transition: stroke 0.5s, stroke-dashoffset 1s linear;
+    width: 100px;
     height: 100px;
-    z-index: 7;
-}
+    
+  }
+  
+  .time-left {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
 
-.timer div {
-    font-size: 30px;
-    font-weight: 100;
-    width: 25px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px 0 10px;
-}
-
+ 
+  

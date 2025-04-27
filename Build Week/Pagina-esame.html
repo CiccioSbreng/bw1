@@ -12,23 +12,20 @@
     <!-- div per contenere il logo con class "logo" -->
     <div class="logo">
         <img src="/assets/epicode_logo.png" alt="logo">
+        <div class="container">
+            <div class="timer-container">
+              <svg width="200" height="200">
+                <circle class="circle-bg" cx="100" cy="100" r="85"></circle>
+                <circle class="circle-progress" id="progressCircle" cx="100" cy="100" r="85"></circle>
+              </svg>
+              <div class="time-left" id="timeLeft">15s</div>
+            </div>
+          
+            
+          </div>
     </div>
     <!--creato div per contenere il timer id "contTimer" (se vi è più comodo potete spostarlo nel div del logo)  -->
-    <div class="main-container center">
-        
-        <div class="circle-container center">
-        <div class="semicircle"></div>
-        <div class="semicircle"></div>
-        <div class="semicircle"></div>
-        <div class="outermost-circle"></div>
-    
-    </div>
-
-    <!-- timer -->
-    <div class="timer-container center">
-        <div id="timer" class="timer center" style="color: black;"> 30 </div>
-           
-    </div>
+   
 </div>
 </header>
 

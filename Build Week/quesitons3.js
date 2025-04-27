@@ -98,269 +98,166 @@ const questions = [
   },
 ];
 
-
 let QUESTION_COUNTER = 0;
 let CORRECT_ANSWERS = 0;
-const MAX_QUESTIONS = questions.length; //numero totale di domande 
-const MIN_VAL = 1; // rimane sempre costante
-let MAX_VAL = 4; //boolean -> 2, multiple -> 4
-let SELECTED_ANSWER = ""; //stringa di appoggio per memo la risposta data
+const MAX_QUESTIONS = questions.length;
+let MAX_VAL = 4; // boolean -> 2, multiple -> 4
+let SELECTED_ANSWER = "";
 
-const RANDOM_QUESTIONS_IDXS = myRandomArray(MAX_QUESTIONS); //array di indici random
+const RANDOM_QUESTIONS_IDXS = myRandomArray(MAX_QUESTIONS);
 
 window.addEventListener("load", fillPage);
 
+let currentQuestion = 0;
+let timeLeft = 15;
+let timer;
+const totalTime = 15;
+const radius = 85;
+const circumference = 2 * Math.PI * radius;
+const progressCircle = document.getElementById('progressCircle');
+const timeText = document.getElementById('timeLeft');
+const answerButton = document.getElementById('answerButton');
 
+// Imposta il cerchio iniziale
+progressCircle.style.strokeDasharray = circumference;
+progressCircle.style.strokeDashoffset = 0;
+progressCircle.style.stroke = "green";
 
-const semicircles = document.querySelectorAll('.semicircle');
-const timer = document.querySelector('.timer');
-const MAX_TIME = 30; // tempo massimo per ogni domanda
-const MAX_TIME_MS = MAX_TIME * 1000; // tempo massimo in ms  
+function startTimer() {
+  clearInterval(timer);  // Stoppa il timer precedente
+  timeLeft = totalTime;   // Reset del tempo
 
-let counter = MAX_TIME; //tempo che diminuisce
-let counterMS = counter * 1000; //tempo che diminuisce in ms
-let angle = (counterMS / MAX_TIME_MS) * 360; // Calcola l'angolo per il semicerchio
+  // Resettiamo la barra del timer
+  progressCircle.style.strokeDashoffset = 0;
+  updateUI();  // Funzione per aggiornare la UI del timer
 
-function count(timerLoop) {
-  console.log("[count]"); 
-  
-  timer.innerText = counter--;
-  counterMS = counter * 1000; 
-  let angle = Math.floor((counterMS / MAX_TIME_MS) * 360); // Calcola l'angolo per il semicerchio
+  // Partiamo con il timer
+  timer = setInterval(() => {
+    timeLeft--;
+    updateUI();  // Aggiorniamo la UI ogni secondo
 
-  console.log("angle: " + angle + ", counterMS: " + counterMS + ", counter: " + counter );
-  if (counterMS > 0) {
-    if (angle > 180) {
-      semicircles[2].style.display = 'none';
-      semicircles[0].style.transform = `rotate(180deg)`;
-      semicircles[1].style.transform = `rotate(${angle}deg)`;
-    } else {
-      semicircles[2].style.display = 'block';
-      semicircles[0].style.transform = `rotate(${angle}deg)`;
-      semicircles[1].style.transform = `rotate(${angle}deg)`;
+    if (timeLeft <= 0) {  // Se il tempo è finito, passa alla prossima domanda
+      nextQuestion();
     }
+  }, 1000);
+}
 
-    if (counter <= MAX_TIME) {
-      semicircles[0].style.backgroundColor = "blue";
-      semicircles[1].style.backgroundColor = "blue";
-      timer.style.color = "blue";
-    }
-    if (counter <= 10000) {
-      semicircles[0].style.backgroundColor = "orange";
-      semicircles[1].style.backgroundColor = "orange";
-      timer.style.color = "orange";
-    }
-  
-    if (counter <= 6000) {
-      semicircles[0].style.backgroundColor = "red";
-      semicircles[1].style.backgroundColor = "red";
-      timer.style.color = "red";
-    }
-    if (counter <= 0) {
-      clearInterval(timerLoop); // Ferma il timer quando il countdown arriva a zero
-      semicircles.forEach(s => s.style.display = 'none'); // Nascondiamo tutti i semicircoli
-    }
-  }
-  else {
-    clearInterval(timerLoop); //ferma il timer
-    counter = MAX_TIME;
-    angle = 360; 
+function updateUI() {
+  timeText.innerText = `${timeLeft}s`;
+
+  const offset = circumference - (timeLeft / totalTime) * circumference;
+  progressCircle.style.strokeDashoffset = offset;
+
+  if (timeLeft > 10) {
+    progressCircle.style.stroke = "green";
+  } else if (timeLeft > 5) {
+    progressCircle.style.stroke = "orange";
+  } else {
+    progressCircle.style.stroke = "red";
   }
 }
-/* function countDownTimer(timerLoop) {
-  const currentTime = Date.now(); // Ottieni il tempo corrente in millisecondi
-  let remainingTime = futureTime - currentTime; // Calcola il tempo rimanente in millisecondi
-  const safeTime = Math.max(0, remainingTime); // Assicurati che il tempo rimanente non sia mai negativo
-  const angle = (safeTime / setTime) * 360; // Calcola l'angolo per il semicerchio
-  // 1. Prima aggiorniamo il grafico
-  if (angle > 180) {
-    semicircles[2].style.display = 'none';
-    semicircles[0].style.transform = `rotate(180deg)`;
-    semicircles[1].style.transform = `rotate(${angle}deg)`;
+
+function nextQuestion() {
+  // Passiamo alla domanda successiva
+  QUESTION_COUNTER++;
+  if (QUESTION_COUNTER >= MAX_QUESTIONS) {
+    showFinalPage(); // Se le domande sono finite, mostra la pagina finale
   } else {
-    semicircles[2].style.display = 'block';
-    semicircles[0].style.transform = `rotate(${angle}deg)`;
-    semicircles[1].style.transform = `rotate(${angle}deg)`;
+    fillPage();  // Ricarichiamo la pagina con la nuova domanda
+    startTimer();  // Avviamo il timer sulla nuova domanda
   }
+}
 
-  // 2. Poi calcoliamo il timer
+// Aggiungi il click su NEXT per avanzare alla domanda successiva
+document.getElementById("nextBtn").addEventListener("click", () => {
+  clearInterval(timer); // Fermiamo il timer
+  QUESTION_COUNTER++;  // Passiamo alla domanda successiva
 
-  let secs = Math.floor((safeTime / 1000) % 60);
-
-  // 3. Formattiamo il tempo a due cifre
-
-  secs = secs.toLocaleString('it-IT', { minimumIntegerDigits: 2, useGrouping: false });
-
-  // 4. Visualizziamo il timer nel DOM
-  timer.innerHTML = `
-
-    <div> ${secs} </div>
-    `;
-
-  // 5. Cambiamo il colore quando il timer è vicino a zero
-
-  if (safeTime <= 15000) {
-    semicircles[0].style.backgroundColor = "blue";
-    semicircles[1].style.backgroundColor = "blue";
-    timer.style.color = "blue";
+  if (QUESTION_COUNTER >= MAX_QUESTIONS) {
+    showFinalPage(); // Se le domande sono finite, mostra la pagina finale
+  } else {
+    fillPage();  // Ricarichiamo la pagina con la nuova domanda
+    startTimer();  // Avviamo il timer sulla nuova domanda
   }
+});
 
-
-  if (safeTime <= 10000) {
-    semicircles[0].style.backgroundColor = "orange";
-    semicircles[1].style.backgroundColor = "orange";
-    timer.style.color = "orange";
-  }
-
-  if (safeTime <= 6000) {
-    semicircles[0].style.backgroundColor = "red";
-    semicircles[1].style.backgroundColor = "red";
-    timer.style.color = "red";
-  }
-
-  // 6. Quando il timer arriva a zero, nascondiamo il grafico e fermiamo il timer
-  if (safeTime <= 0) {
-    clearInterval(timerLoop); // Ferma il timer quando il countdown arriva a zero
-    semicircles.forEach(s => s.style.display = 'none'); // Nascondiamo tutti i semicircoli
-
-    timer.innerHTML = `
-        <div> 00 </div>`;
-    timer.style.color = "lightgray"; // Cambiamo il colore del timer a grigio
-
-  }
-} */
-
-
-/*function resetTimer(timerLoop) {
-  console.log("*************** RESET TIMER *****************");
-  clearInterval(timerLoop); // Ferma il timer quando il countdown arriva a zero
-  semicircles.forEach(s => s.style.display = 'none'); // Nascondiamo tutti i semicircoli
-  timer.innerHTML = `<div> 00 </div>`;
-  timer.style.color = "lightgray"; // Cambiamo il colore del timer a grigio
-}*/
-
-//funzione per popolare la pagina
 function fillPage() {
-  console.log("*************** FILL PAGE *****************");
-  console.log("QUESTION COUNT: " + QUESTION_COUNTER + "/" + MAX_QUESTIONS);
-
-  const countInterval = setInterval(count, 1000); //chiama count ogni secondo
-  // count(timerLoop); // Avvia il timer
-
-  resetRadio(); //resetto i bottoni radio
-
-  resetColor(); //resetto il colore dei bottoni
-
-  hideNextBtn(); //nascondo il bottone next
-
-  setQuestionRandom(); //popolo il div con la domanda
-
-  setAnswersRandom(); //popolo i bottoni con le risposte
+  resetRadio();
+  resetColor();
+  hideNextBtn();
+  setQuestionRandom();
+  setAnswersRandom();
 
   if (QUESTION_COUNTER == MAX_QUESTIONS)
-    goToFinal(); //setta il nextBtn
+    showNextBtn();
 
-  //Mod Fede
-  //startTimer(); //parto il timer
-  //Fine Mod Fede
+  startTimer();  // Iniziamo il timer per la domanda corrente
 }
 
-
-
-//////////////////////////////////////////////////////////////////////////
-///////////////////////////////RANDOM/////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-//funzione per popolare il div con la domanda random
+// Funzione per popolare la pagina con la domanda random
 function setQuestionRandom() {
   if (QUESTION_COUNTER > MAX_QUESTIONS - 1)
     return;
-  console.log("*[showQuestion]: current question: " + QUESTION_COUNTER);
   let toShow = questions[RANDOM_QUESTIONS_IDXS[QUESTION_COUNTER]].question;
-  // let showingNumber = QUESTION_COUNTER + 1;
   document.getElementById("questionText").innerText = toShow;
   document.getElementById("questionNumber").innerText = QUESTION_COUNTER + 1;
-
 }
 
-//////////////////////////////////////////////////////////////////////////
-///////////////////////////////RANDOM/////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-// funzione per posizionare le risposte in modo casuale
+// Funzione per posizionare le risposte in modo casuale
 function setAnswersRandom() {
   if (QUESTION_COUNTER > MAX_QUESTIONS - 1)
     return;
-  console.log("~~~~~~~~~~~~~[setAnswersRandom]: start");
-  //isolo l'oggetto su cui sto lavorando
+
   const workingOn = questions[RANDOM_QUESTIONS_IDXS[QUESTION_COUNTER]];
-  console.log(workingOn);
-  console.log("~[setAnsewrsRandom]: workingOn prev id: " + RANDOM_QUESTIONS_IDXS[QUESTION_COUNTER]);
-  //assegno MAX_VAL
-  workingOn.type == "boolean" ? MAX_VAL = 2 : MAX_VAL = 4;
-  //se MAX_VAL == 2, rimuovo bottoni delle risposte extra
-  MAX_VAL == 2 ? hideBtn() : showBtn();
-  //creo array di numeri da 0 a MAX_VAL in ordine casuale
+  MAX_VAL = workingOn.type == "boolean" ? 2 : 4;
+
+  // Se è una domanda boolean, nascondo i bottoni extra
+  if (MAX_VAL == 2) hideBtn();
+  else showBtn();
+
   const posRisposteRandom = myRandomArray(MAX_VAL);
-  //creo un array di appoggio con tutte le risposte
-  let totalAnswers = [];
-  //lo popolo
-  totalAnswers.push(workingOn.correct_answer);
-  for (let i = 0; i < workingOn.incorrect_answers.length; i++) //(?)MAX_VAL?
-    totalAnswers.push(workingOn.incorrect_answers[i]);
-  //recupero i radio button e gli span in cui insertire le risposte
+  let totalAnswers = [workingOn.correct_answer, ...workingOn.incorrect_answers];
   const radios = document.querySelectorAll('input[type="radio"]');
   const answerSpans = document.querySelectorAll('.btn');
-  //array di appoggio per le risposte in ordine random
+
   let appoggio = [];
-  for (let i = 0; i < MAX_VAL; i++)
-    appoggio[i] = totalAnswers[posRisposteRandom[i]];
-  //assegno le risposte ai radio e agli span
+  for (let i = 0; i < MAX_VAL; i++) appoggio[i] = totalAnswers[posRisposteRandom[i]];
+
   for (let i = 0; i < MAX_VAL; i++) {
-    radios[i].value = appoggio[i]; //assegno il valore alla radio
-    answerSpans[i].innerText = appoggio[i]; //assegno il testo alla span
+    radios[i].value = appoggio[i];
+    answerSpans[i].innerText = appoggio[i];
   }
 }
 
-//funzoine di appoggio per generare numeri casuali tra min e max
+// Funzione per generare un array di numeri casuali
 function myRandomArray(length) {
   let toRet = [];
-  let valRandom;
-  let posLibere = new Array(length); //array di appoggio per le posizioni libere
-  for (let i = 0; i < length; i++)
-    posLibere[i] = true; //inizializzo l'array a true
+  let posLibere = new Array(length).fill(true);
+
   for (let i = 0; i < length; i++) {
+    let valRandom;
     do {
-      valRandom = Math.floor(Math.random() * length); //numero random da 0 a length
-    } while (posLibere[valRandom] == false); //finchè non trovo una posizione libera
-    posLibere[valRandom] = false; //la posizione è ora occupata
-    toRet[i] = valRandom; //inserisco il numero random nell'array
+      valRandom = Math.floor(Math.random() * length);
+    } while (posLibere[valRandom] == false);
+    posLibere[valRandom] = false;
+    toRet[i] = valRandom;
   }
-  console.log("[myRandomArray]: toRet: ");
-  for (let i = 0; i < toRet.length; i++) {
-    console.log(toRet[i]);
-  }
-  console.log("[myRandomArray]: DONE");
   return toRet;
 }
 
-//funzione per creare i due bottoni extra nel caso di type == multiple
 function showBtn() {
-  console.log("§[showBtn]: ...");
   let container = document.getElementById("lbl");
   for (let i = 2; i < MAX_VAL; i++) {
     container.children[i].style.display = "";
   }
-  console.log("§[showBtn]: DONE");
 }
 
 function hideBtn() {
-  console.log("+[hideBtn]: ...");
   let container = document.getElementById("lbl");
   for (let i = 2; i < container.childElementCount; i++) {
     container.children[i].style.display = "none";
   }
-  console.log("+[hideBtn]: DONE");
 }
-
 
 function showNextBtn() {
   document.getElementById("nextBtn").style.display = "block";
@@ -370,39 +267,7 @@ function hideNextBtn() {
   document.getElementById("nextBtn").style.display = "none";
 }
 
-//-------------------------- per getstire le risposte -------
-function checkAnswer() {
-  console.log("@@@@@@@@@@ BUTTON CLICKED");
-  console.log("![checkAnswer]: current question: " + QUESTION_COUNTER);
-
-  const workingOn = questions[RANDOM_QUESTIONS_IDXS[QUESTION_COUNTER]];
-  const rightAnswer = workingOn.correct_answer;
-  console.log("![checkAnswer]: right answer: " + rightAnswer);
-
-  //recupero la risposta selezionata
-  SELECTED_ANSWER = document.querySelector('input[name="options"]:checked').value;
-
-  console.log("![checkAnswer]: selected answer: " + SELECTED_ANSWER);
-
-  if (rightAnswer == SELECTED_ANSWER) {
-    console.log("![checkAnswer]: congrats!");
-    CORRECT_ANSWERS++;
-  }
-  console.log("![checkAnswer]: current score: " + CORRECT_ANSWERS);
-
-  QUESTION_COUNTER++; //incremento la variabile globale
-  console.log("[checkAnswer]:final QUESTION_COUNTER: " + QUESTION_COUNTER);
-  console.log("___________________________________________________");
-  fillPage(); //ripopolo la pagina
-}
-
-
-function goToFinal() {
-  document.getElementById("nextBtn").setAttribute("onclick", showFinalPage());
-}
-
-
-//funzione per resettare il check dei radio button al ricaricamento della pagina
+// Funzione per resettare i radio button
 function resetRadio() {
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => {
@@ -410,19 +275,7 @@ function resetRadio() {
   });
 }
 
-//funzione per colorare la risposta selezinata
-function highlightSelected() {
-  const radios = document.querySelectorAll('input[type="radio"]');
-  radios.forEach(radio => {
-    if (radio.checked) {
-      radio.parentElement.classList.add('btnSelected');
-    } else {
-      radio.parentElement.classList.remove('btnSelected');
-    }
-  });
-}
-
-//funzione che ripristina il colore di sfondo dei bottoni
+// Funzione per ripristinare il colore di sfondo dei bottoni
 function resetColor() {
   const radios = document.querySelectorAll('input[type="radio"]');
   radios.forEach(radio => {
@@ -430,45 +283,8 @@ function resetColor() {
   });
 }
 
-
-// ------------------------- pagina finale -------------------
 function showFinalPage() {
-  console.log("*************** FINAL PAGE *****************");
-  document.getElementById("container").style.display = "none"; //nascondo il div principale
-
-
-  ////////////////////////////// da abilitare timer ////////////////
-  //document.getElementById("contTimer").style.display = "none"; //nascondo il div del timer
-
-
-  //popolo il div con il risultato
-  document.getElementById("finalPage").style.display = "flex"; //mostro il div finale
-  let passed = (CORRECT_ANSWERS > 5);
-  let emoji = document.getElementById("emoji");
-  if (passed) {
-    document.getElementById("emoji").innerText = "😎";
-    document.getElementById("outcome").innerHTML = "You did it! Good job!";
-  } else {
-    document.getElementById("emoji").innerText = "😢";
-    document.getElementById("outcome").innerHTML = "Sorry, you didn't pass the test.";
-    document.getElementById("restartBtn").style.display = "block"; //mostro il bottone restart in caso di fallimento del test
-  }
-
-  document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;
-  console.log("^[showResult]: scoreValue: " + document.getElementById("scoreValue").innerText);
-  if (CORRECT_ANSWERS > 1)
-    document.getElementById("scoreValue").innerText = CORRECT_ANSWERS;
+  document.getElementById("container").style.display = "none";
+  document.getElementById("finalPage").style.display = "flex";
+  document.getElementById("score").innerText = `Hai risposto correttamente a ${CORRECT_ANSWERS} su ${MAX_QUESTIONS} domande.`;
 }
-
-//funzione per resettare il punteggio e il contatore delle domande e ripartire
-function restart() {
-  QUESTION_COUNTER = 0;
-  CORRECT_ANSWERS = 0;
-  timer = questionTime;
-  document.getElementById("contTimer").style.display = "block"; //mostro il div del timer
-  document.getElementById("finalPage").style.display = "none"; //nascondo il div finale
-  document.getElementById("container").style.display = "flex"; //mostro il div principale
-  fillPage(); //ripopolamento della pagina
-}
-
-
