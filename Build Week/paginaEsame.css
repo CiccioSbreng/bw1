@@ -27,6 +27,7 @@ body {
 header {
     align-self: flex-start;
     width: 100%;
+    display: flex;
 }
 
 .logo {
@@ -37,7 +38,6 @@ header {
 
 .logo img {
     width: 150px;
-    height: 50px
 }
 
 #container {
@@ -114,8 +114,7 @@ input[type="radio"] {
 }
 
 /* mod viola per bottoni e pg finale */
-#nextBtn,
-#restartBtn {
+#nextBtn{
 
     background-color: #00FFFF;
     padding: 1em 1.3em;
@@ -127,12 +126,12 @@ input[type="radio"] {
     display: none;
 }
 
-#nextBtn:hover,
-#restartBtn:hover {
+#nextBtn:hover{
     cursor: pointer;
     box-shadow: 0 0 10px #00aeff;
     font-size: 1.2em;
 }
+
 
 #finalPage {
     display: none;
@@ -140,15 +139,28 @@ input[type="radio"] {
     justify-content: center;
     align-items: center;
 
+
+    padding: 1em, 2em;
     width: 60%;
     margin: auto;
-    height: 80vh;
+    position: fixed;
+    top: 30%;
+    left: 20%;
+}
+
+.innerDivFinal {
+    border-radius: 30px;
+    background-color: #fdf1fac6;
+    color: #007bff;
+    text-shadow:0 0 1px #0056b3 ;
+    box-shadow: 0 0 30px 5px rgb(0, 0, 0);
+
 }
 
 #finalPage p {
     text-align: center;
     font-size: 2em;
-    margin-bottom: 20px;
+    padding: 1.5em 2em;
 }
 
 
@@ -160,9 +172,11 @@ input[type="radio"] {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
-    border-radius: 16px;
+    padding: 2em;
+    align-self: flex-end;
+    position: fixed;
+    top: 5em;
+    right: 5em;
 
   }
   
@@ -192,13 +206,10 @@ input[type="radio"] {
     fill: none;
     stroke-width: 15;
     stroke: green;
-    stroke-linecap: round;
-    stroke-dasharray: 534; /* 2 * PI * r -> approx for r=85 */
-    stroke-dashoffset: 0;
+    stroke-linecap: butt;
     transition: stroke 0.5s, stroke-dashoffset 1s linear;
     width: 100px;
     height: 100px;
-    
   }
   
   .time-left {
@@ -206,10 +217,24 @@ input[type="radio"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 24px;
+    font-size: 35px;
     font-weight: bold;
   }
+
+  .time-rem {
+    font-size: 1em;
+    position: absolute;
+    
+  }
   
+  .txt-top {
+    top: 30%;
+    left: 37%;
+  }
+  .txt-bottom {
+    top: 60%;
+    left: 35%;
+  }
   button {
     padding: 10px 20px;
     font-size: 18px;
