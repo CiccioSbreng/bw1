@@ -33,7 +33,7 @@
     Pagina di stile
   - #### [questions3.js](url](https://github.com/CiccioSbreng/bw1/blob/main/Build%20Week/quesitons3.js))
     - **TIMER**:
-      Ad ogni secondo viene invocata setInterval per farlo aggiornare, sia il tempo rimanente che il colore
+      Ad ogni secondo viene invocata setInterval per far aggiornare sia il tempo rimanente che il colore
       del cerchio d'avanzamento in base al tempo rimasto (verde -> arancione -> rosso).
       Torna a zero se il tempo scade o se l'utente passa alla domanda succcessiva (solo se ha selezionato
       almeno una risposta).
@@ -41,6 +41,8 @@
     - **RANDOM**:
       Sia le domande che le risposte ad esse associate vengono mostrate in ordine casuale. Questa funzione è
       implementata da `myRandomArray(length)` che ritorna un array con indici random di lunghezza _length_.
+      L'array di indici random per le domande viene generato uan sola volta, mentre quello delle risposte
+      cambia per ogni domanda.
     - `fillPage()` riempie la pagina ogni volta che viene schiacciato il button o finisce il timer
     - `setQuestionRandom()` mostra una domanda in ordine random
     - `setAnswerRandom()` mostra le risposte alla domanda a cui sono associate tutte in ordine casuale, cambiando
