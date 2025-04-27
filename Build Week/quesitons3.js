@@ -180,6 +180,35 @@ document.getElementById("nextBtn").addEventListener("click", () => {
     startTimer();  // Avviamo il timer sulla nuova domanda
   }
 });
+// Spiegazione del Timer+Quiz
+// Inizio: si carica la prima domanda
+
+// Parte il timer da 15 secondi
+// Ogni secondo il tempo scende di 1
+
+// Ad ogni secondo:
+// - Aggiorniamo il cerchio (verde/arancione/rosso)
+// - Aggiorniamo il numero dei secondi sullo schermo
+
+// Se il tempo NON è finito:
+// - Continuiamo a scalare il tempo
+
+// Se il tempo È finito:
+// - Passiamo automaticamente alla prossima domanda (nextQuestion())
+
+// Se l'utente clicca "Next":
+// - Fermiamo il timer
+// - Passiamo subito alla prossima domanda
+
+// Quando cambiamo domanda:
+// - Incrementiamo il contatore delle domande
+// - Carichiamo una nuova domanda
+// - Facciamo ripartire il timer da 15 secondi
+
+// Se abbiamo finito tutte le domande:
+// - Mostriamo la pagina finale del quiz
+
+
 
 function fillPage() {
   resetRadio();
